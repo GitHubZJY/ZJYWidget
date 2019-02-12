@@ -31,9 +31,9 @@ public class YCameraMarkView extends FrameLayout {
     //默认开启裁剪
     private static final boolean DEFAULT_CROP_ENABLE = true;
     //默认裁剪框宽度为280dp
-    public static final float FRAME_DEFAULT_WIDTH = 280f;
+    public static final int FRAME_DEFAULT_WIDTH = 600;
     //默认裁剪框高度为280dp
-    public static final float FRAME_DEFAULT_HEIGHT = 280f;
+    public static final int FRAME_DEFAULT_HEIGHT = 600;
     //默认遮罩层透明度为60%
     private static final float OVERLAY_DEFAULT_ALPHA = 0.6f;
 
@@ -91,8 +91,8 @@ public class YCameraMarkView extends FrameLayout {
         try {
             float overlayAlpha = ta.getFloat(R.styleable.CameraMarkView_overlay_alpha, OVERLAY_DEFAULT_ALPHA);
             boolean cropEnable = ta.getBoolean(R.styleable.CameraMarkView_crop_enabled, DEFAULT_CROP_ENABLE);
-            float cropWidth = ta.getDimensionPixelSize(R.styleable.CameraMarkView_crop_width, 600);
-            float cropHeight = ta.getDimensionPixelSize(R.styleable.CameraMarkView_crop_height, 600);
+            float cropWidth = ta.getDimensionPixelSize(R.styleable.CameraMarkView_crop_width, FRAME_DEFAULT_WIDTH);
+            float cropHeight = ta.getDimensionPixelSize(R.styleable.CameraMarkView_crop_height, FRAME_DEFAULT_HEIGHT);
             boolean isFlash = ta.getBoolean(R.styleable.CameraMarkView_flash_enable, false);
             boolean isShowScan = ta.getBoolean(R.styleable.CameraMarkView_scan_enable, true);
             float strokeWidth = ta.getDimensionPixelSize(R.styleable.CameraMarkView_frame_stroke_weight, 2);

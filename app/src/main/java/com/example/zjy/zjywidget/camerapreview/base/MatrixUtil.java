@@ -9,7 +9,7 @@ import android.media.ExifInterface;
 import java.io.IOException;
 
 /**
- * @author : lizhiwei
+ * @author : YANG
  * @describe : bitmap翻转工具类
  * @date : 2018/7/26
  */
