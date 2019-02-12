@@ -9,13 +9,13 @@
 CSDN : https://blog.csdn.net/IT_ZJYANG
 
 ## YSkillView
-    带动画的6变形技能图,支持自定义颜色以及属性文案,动态设置分数
+    带入场动画的6变形技能图,支持自定义颜色以及属性文案,动态设置分数、最大分值
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YSkillView.gif)
 
 ## YCameraMarkView
-`   一个带遮罩扫描动画的相机拍摄View,支持自定义裁剪大小、形状,前后置切换,扫描动画
+    一个带遮罩扫描动画的相机拍摄View,支持自定义裁剪大小、形状,前后置切换,扫描动画
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YCameraMarkView.gif)
 
 ## YBannerView
-    封装ViewPager快速集成轮播功能,支持自定义指示器
+    封装ViewPager快速集成轮播功能,支持自定义指示器大小颜色,支持网络图加载
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YBannerView.gif)
