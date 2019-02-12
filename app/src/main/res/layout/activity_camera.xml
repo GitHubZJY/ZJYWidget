@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zjy.zjywidget.MainActivity">
+
+    <com.example.zjy.zjywidget.camerapreview.YCameraMarkView
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay_alpha="0.6"
+        app:camera_position="back"
+        app:flash_enable="false"
+        app:frame_stroke_weight="2dp"
+        app:crop_mode="circle"
+        app:crop_enabled="true"
+        >
+
+    </com.example.zjy.zjywidget.camerapreview.YCameraMarkView>
+
+
+    <TextView
+        android:id="@+id/loading_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="64dp"
+        android:visibility="gone"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:text="正在生成图片"/>
+
+    <ImageView
+        android:id="@+id/take_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ic_camera"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

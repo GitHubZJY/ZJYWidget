@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CameraMarkView">
+        <attr name="overlay_alpha" format="float"/>
+        <attr name="crop_enabled" format="boolean"/>
+        <attr name="crop_width" format="dimension"/>
+        <attr name="crop_height" format="dimension"/>
+        <attr name="frame_stroke_weight" format="dimension"/>
+        <attr name="frame_color" format="reference|color" />
+        <attr name="flash_enable" format="boolean"/>
+        <attr name="scan_enable" format="boolean"/>
+        <attr name="crop_mode" format="enum" >
+            <enum name="rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+        <attr name="camera_position" format="enum">
+            <enum name="front" value="1" />
+            <enum name="back" value="2" />
+        </attr>
+        <attr name="scan_duration" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="SkillView">
+        <attr name="line_width" format="dimension"/>
+        <attr name="bg_color" format="reference|color"/>
+        <attr name="text_color" format="reference|color"/>
+        <attr name="score_color" format="reference|color"/>
+        <attr name="point_color" format="reference|color"/>
+        <attr name="skill_text_size" format="dimension"/>
+        <attr name="max_value" format="integer"/>
+        <attr name="anim_duration" format="integer" />
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <attr name="adjustViewBounds" format="boolean"/>
+        <attr name="facing" format="enum">
+            <enum name="back" value="0" />
+            <enum name="front" value="1" />
+        </attr>
+        <attr name="aspectRatio" format="string"/>
+        <attr name="autoFocus" format="boolean"/>
+        <attr name="flash" format="integer"/>
+    </declare-styleable>
+
+</resources>
