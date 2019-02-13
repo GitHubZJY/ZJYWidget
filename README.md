@@ -16,6 +16,10 @@ CSDN : https://blog.csdn.net/IT_ZJYANG
     一个带遮罩扫描动画的相机拍摄View,支持自定义裁剪大小、形状,前后置切换,扫描动画
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YCameraMarkView.gif)
 
+## YCircleProgressBar
+    带动画的弧形进度条,可自定义颜色,宽度,文案,百分比,动画时长
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YCircleProgressBar.gif)
+
 ## YBannerView
     封装ViewPager快速集成轮播功能,支持自定义指示器大小颜色,支持网络图加载
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YBannerView.gif)
