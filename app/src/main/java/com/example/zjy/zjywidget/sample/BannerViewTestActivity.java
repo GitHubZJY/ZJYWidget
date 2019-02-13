@@ -26,7 +26,7 @@ public class BannerViewTestActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("BannerView");
+            actionBar.setTitle("YBannerView");
         }
 
         mBannerView = findViewById(R.id.banner_view);

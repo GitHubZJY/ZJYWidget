@@ -36,6 +36,10 @@
         <activity android:name=".sample.BannerViewTestActivity">
 
         </activity>
+
+        <activity android:name=".sample.CircleProgressTestActivity">
+
+        </activity>
     </application>
 
 </manifest>

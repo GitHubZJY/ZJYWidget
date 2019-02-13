@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zjy.zjywidget.MainActivity">
+
+    <com.example.zjy.zjywidget.circleprogress.CircleProgressBar
+        android:id="@+id/circle_progress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="36dp"
+        />
+
+    <com.example.zjy.zjywidget.circleprogress.CircleProgressBar
+        android:id="@+id/circle_progress2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circle_progress"
+        app:progressValue="85"
+        app:maxValue="100"
+        app:progressColor="#f9ab46"
+        android:layout_marginTop="16dp"
+        />
+
+    <com.example.zjy.zjywidget.circleprogress.CircleProgressBar
+        android:id="@+id/circle_progress3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circle_progress2"
+        app:progressValue="60"
+        app:maxValue="100"
+        app:bgStrokeWidth="1dp"
+        app:progressStrokeWidth="3dp"
+        app:progressColor="#50d2d5"
+        android:layout_marginTop="16dp"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

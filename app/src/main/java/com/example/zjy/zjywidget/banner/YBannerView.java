@@ -23,7 +23,7 @@ import static android.view.Gravity.BOTTOM;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
 /**
- * Created by zhengjiayang on 2018/8/31.
+ * Created by YANG on 2018/8/31.
  * 自定义Banner轮播View
  */
 
