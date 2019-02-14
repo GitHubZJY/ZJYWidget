@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.zjy.zjywidget.R;
@@ -181,12 +182,7 @@ public class CircleProgressBar extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         RectF oval = new RectF(center - radius, center - radius, center + radius, center + radius);  //用于定义的圆弧的形状和大小的界限
         paint.setStyle(Paint.Style.STROKE);
-        //为了实现从底部向上绘制弧线
-        if (progressValue / maxValue > 0.5) {
-            canvas.drawArc(oval, 180 * (((float) progressValue / (float) maxValue) - 0.5f), 360 * progressValue / maxValue, false, paint);  //根据进度画圆弧
-        } else {
-            canvas.drawArc(oval, -180 * (((float) progressValue / (float) maxValue) - 0.5f), 360 * progressValue / maxValue, false, paint);  //根据进度画圆弧
-        }
+        canvas.drawArc(oval, 90 -180 * ((float) progressValue / (float) maxValue), 360 * progressValue / maxValue, false, paint);  //根据进度画圆弧
     }
 
 

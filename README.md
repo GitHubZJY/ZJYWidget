@@ -7,6 +7,7 @@
 ## 关于作者
 一个在奋斗路上的Android小生
 CSDN : https://blog.csdn.net/IT_ZJYANG
+简书: https://www.jianshu.com/u/4cb2688ddf31
 
 ## YSkillView
     带入场动画的6变形技能图,支持自定义颜色以及属性文案,动态设置分数、最大分值
