@@ -11,7 +11,6 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.example.zjy.zjywidget.R;
@@ -62,6 +61,8 @@ public class CircleProgressBar extends View {
     //动画时间
     private int animTime = 1500;
 
+    private RectF mArcRectF;
+
 
     public CircleProgressBar(Context context) {
         super(context, null);
@@ -102,6 +103,9 @@ public class CircleProgressBar extends View {
         }
         typedArray.recycle();
 
+        paint = new Paint();
+        mArcRectF = new RectF();
+
         //设置动画
         setAnimation(0, progressValue, animTime);
     }
@@ -116,18 +120,18 @@ public class CircleProgressBar extends View {
         int finallyHeight;
 
         //兼容wrap_content模式
-        int wspecMode = MeasureSpec.getMode(widthMeasureSpec);
-        int wspecSize = MeasureSpec.getSize(widthMeasureSpec);
-        int hspecMode = MeasureSpec.getMode(heightMeasureSpec);
-        int hspecSize = MeasureSpec.getSize(heightMeasureSpec);
-        if (wspecMode == MeasureSpec.EXACTLY) {
-            finallyWidth = wspecSize;
+        int wSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int wSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+        int hSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+        int hSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+        if (wSpecMode == MeasureSpec.EXACTLY) {
+            finallyWidth = wSpecSize;
         } else {
             finallyWidth = DEFAULT_WIDTH;
         }
 
-        if (hspecMode == MeasureSpec.EXACTLY) {
-            finallyHeight = hspecSize;
+        if (hSpecMode == MeasureSpec.EXACTLY) {
+            finallyHeight = hSpecSize;
         } else {
             finallyHeight = DEFAULT_HEIGHT;
         }
@@ -142,7 +146,6 @@ public class CircleProgressBar extends View {
         super.onDraw(canvas);
         int center = getWidth() / 2;
         float radius = center - roundWidth / 2;
-        paint = new Paint();
         /**
          * 绘制后面的整圆
          */
@@ -159,7 +162,7 @@ public class CircleProgressBar extends View {
         paint.setStrokeWidth(0);
         paint.setColor(textColor);
         paint.setTextSize(textSize);
-        paint.setTypeface(Typeface.DEFAULT); //设置字体
+        paint.setTypeface(Typeface.DEFAULT);
         if (!TextUtils.isEmpty(centerText)) {
             //如果是设置文本内容，则直接测量文本长度并绘制
             float textWidth = paint.measureText(centerText);
@@ -177,12 +180,18 @@ public class CircleProgressBar extends View {
         /**
          * 绘制有效的进度条弧线
          */
-        paint.setStrokeWidth(progressStrokeWidth); //设置圆环的宽度
-        paint.setColor(progressColor);  //设置进度的颜色
+        //设置圆环的宽度
+        paint.setStrokeWidth(progressStrokeWidth);
+        //设置进度的颜色
+        paint.setColor(progressColor);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        RectF oval = new RectF(center - radius, center - radius, center + radius, center + radius);  //用于定义的圆弧的形状和大小的界限
+        //用于定义的圆弧的形状和大小的界限
+        mArcRectF.left = center - radius;
+        mArcRectF.top = center - radius;
+        mArcRectF.right = center + radius;
+        mArcRectF.bottom = center + radius;
         paint.setStyle(Paint.Style.STROKE);
-        canvas.drawArc(oval, 90 -180 * ((float) progressValue / (float) maxValue), 360 * progressValue / maxValue, false, paint);  //根据进度画圆弧
+        canvas.drawArc(mArcRectF, 90 - 180 * ((float) progressValue / (float) maxValue), 360 * progressValue / maxValue, false, paint);  //根据进度画圆弧
     }
 
 
