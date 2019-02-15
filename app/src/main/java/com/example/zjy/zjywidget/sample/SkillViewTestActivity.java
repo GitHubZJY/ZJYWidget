@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
-import com.example.zjy.zjywidget.skillview.YSkillView;
+import com.zjywidget.widget.skillview.YSkillView;
 
 /**
  * Created by 74215 on 2019/2/12.

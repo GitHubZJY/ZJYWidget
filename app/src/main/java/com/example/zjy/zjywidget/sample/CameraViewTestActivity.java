@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zjy.zjywidget.R;
-import com.example.zjy.zjywidget.camerapreview.YCameraMarkView;
+import com.zjywidget.widget.camerapreview.YCameraMarkView;
 
 public class CameraViewTestActivity extends AppCompatActivity {
 

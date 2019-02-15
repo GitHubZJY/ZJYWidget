@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zjy.zjywidget.MainActivity">
 
-    <com.example.zjy.zjywidget.skillview.YSkillView
+    <com.zjywidget.widget.skillview.YSkillView
         android:id="@+id/skill_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

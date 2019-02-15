@@ -7,7 +7,7 @@
     android:background="#ffffff"
     tools:context="com.example.zjy.zjywidget.MainActivity">
 
-    <com.example.zjy.zjywidget.banner.YBannerView
+    <com.zjywidget.widget.banner.YBannerView
         android:id="@+id/banner_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

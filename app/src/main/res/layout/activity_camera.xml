@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zjy.zjywidget.MainActivity">
 
-    <com.example.zjy.zjywidget.camerapreview.YCameraMarkView
+    <com.zjywidget.widget.camerapreview.YCameraMarkView
         android:id="@+id/camera_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +18,7 @@
         app:crop_enabled="true"
         >
 
-    </com.example.zjy.zjywidget.camerapreview.YCameraMarkView>
+    </com.zjywidget.widget.camerapreview.YCameraMarkView>
 
 
     <TextView

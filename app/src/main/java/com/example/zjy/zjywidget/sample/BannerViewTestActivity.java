@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
-import com.example.zjy.zjywidget.banner.YBannerView;
+import com.zjywidget.widget.banner.YBannerView;
 
 import java.util.ArrayList;
 import java.util.List;
