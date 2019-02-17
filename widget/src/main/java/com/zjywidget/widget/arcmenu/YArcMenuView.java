@@ -104,8 +104,8 @@ public class YArcMenuView extends FrameLayout implements View.OnClickListener {
         mImgViews = new ArrayList<>();
         mMenuItemResIds = new ArrayList<>();
         handleStyleable(context, attrs, defStyleAttr);
-        initImgViews(context);
-        initMenuIv(context);
+        initMenuItemViews(context);
+        initMenuView(context);
     }
 
 
@@ -126,7 +126,11 @@ public class YArcMenuView extends FrameLayout implements View.OnClickListener {
         }
     }
 
-    private void initMenuIv(Context context) {
+    /**
+     * 初始化主按钮
+     * @param context
+     */
+    private void initMenuView(Context context) {
         mMenuIv = new ImageView(context);
         mMenuIv.setImageResource(mMenuResId);
         FrameLayout.LayoutParams params = new LayoutParams(mMenuWidth, mMenuWidth);
@@ -137,8 +141,11 @@ public class YArcMenuView extends FrameLayout implements View.OnClickListener {
         mMenuIv.setOnClickListener(this);
     }
 
-
-    private void initImgViews(Context context) {
+    /**
+     * 初始化菜单子项按钮
+     * @param context
+     */
+    private void initMenuItemViews(Context context) {
         mImgViews.clear();
         for (int index = 0; index < mMenuItemResIds.size(); index++) {
             ImageView menuItem = new ImageView(context);
@@ -165,8 +172,8 @@ public class YArcMenuView extends FrameLayout implements View.OnClickListener {
     public void setMenuItems(List<Integer> resIds) {
         removeAllViews();
         mMenuItemResIds = resIds;
-        initImgViews(mContext);
-        initMenuIv(mContext);
+        initMenuItemViews(mContext);
+        initMenuView(mContext);
     }
 
     @Override
