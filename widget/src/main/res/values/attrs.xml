@@ -59,4 +59,14 @@
         <attr name="centerText" format="string" />
     </declare-styleable>
 
+
+    <declare-styleable name="ArcMenuView">
+        <attr name="spread_radius" format="dimension" />
+        <attr name="menu_width" format="dimension" />
+        <attr name="menu_item_width" format="dimension" />
+        <attr name="duration" format="integer"/>
+        <attr name="can_rotate" format="boolean" />
+        <attr name="menu_drawable" format="reference" />
+    </declare-styleable>
+
 </resources>

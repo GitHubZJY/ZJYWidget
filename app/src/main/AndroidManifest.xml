@@ -40,6 +40,10 @@
         <activity android:name=".sample.CircleProgressTestActivity">
 
         </activity>
+
+        <activity android:name=".sample.ArcMenuTestActivity">
+
+        </activity>
     </application>
 
 </manifest>

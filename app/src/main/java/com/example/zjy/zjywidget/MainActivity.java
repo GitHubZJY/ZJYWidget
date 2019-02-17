@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.zjy.zjywidget.sample.ArcMenuTestActivity;
 import com.example.zjy.zjywidget.sample.BannerViewTestActivity;
 import com.example.zjy.zjywidget.sample.CameraViewTestActivity;
 import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YSkillView", "带动画的6变形技能图,支持自定义颜色以及属性文案,动态设置分数", SkillViewTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YBannerView", "封装ViewPager快速集成轮播功能,支持自定义指示器", BannerViewTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YCircleProgressBar", "带动画的弧形进度条,可自定义颜色,宽度,文案,百分比", CircleProgressTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YArcMenuView", "常见的弧形弹出菜单(卫星导航菜单),以一个按钮为中心，扇形展开菜单子项", ArcMenuTestActivity.class));
         mAdapter = new EntranceItemAdapter(this, viewItemBeans);
 
         mViewListView = findViewById(R.id.view_lv);
