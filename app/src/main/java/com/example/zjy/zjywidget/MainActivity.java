@@ -9,6 +9,7 @@ import com.example.zjy.zjywidget.sample.ArcMenuTestActivity;
 import com.example.zjy.zjywidget.sample.BannerViewTestActivity;
 import com.example.zjy.zjywidget.sample.CameraViewTestActivity;
 import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
+import com.example.zjy.zjywidget.sample.PayLoadingTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YBannerView", "封装ViewPager快速集成轮播功能,支持自定义指示器", BannerViewTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YCircleProgressBar", "带动画的弧形进度条,可自定义颜色,宽度,文案,百分比", CircleProgressTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YArcMenuView", "常见的弧形弹出菜单(卫星导航菜单),以一个按钮为中心，扇形展开菜单子项", ArcMenuTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YPayLoadingView", "仿支付宝的支付成功失败动画，可定制颜色、粗细、动画频率", PayLoadingTestActivity.class));
         mAdapter = new EntranceItemAdapter(this, viewItemBeans);
 
         mViewListView = findViewById(R.id.view_lv);

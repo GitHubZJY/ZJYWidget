@@ -25,6 +25,10 @@
     常见的弧形弹出菜单(卫星导航菜单),以一个按钮为中心，旋转展开菜单子项
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YArcMenuView.gif)
 
+## YPayLoadingView
+    仿支付宝的支付成功失败动画，可定制颜色、粗细、动画频率
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YPayLoadingView.gif)
+
 ## YBannerView
     封装ViewPager快速集成轮播功能,支持自定义指示器大小颜色,支持网络图加载
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YBannerView.gif)

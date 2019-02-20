@@ -44,6 +44,10 @@
         <activity android:name=".sample.ArcMenuTestActivity">
 
         </activity>
+
+        <activity android:name=".sample.PayLoadingTestActivity">
+
+        </activity>
     </application>
 
 </manifest>

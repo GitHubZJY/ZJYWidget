@@ -69,4 +69,11 @@
         <attr name="menu_drawable" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="PayLoadingView">
+        <attr name="pay_load_color" format="color|reference" />
+        <attr name="pay_load_stroke" format="dimension" />
+        <attr name="pay_load_dur" format="integer" />
+        <attr name="pay_result_dur" format="integer"/>
+    </declare-styleable>
+
 </resources>
