@@ -9,6 +9,10 @@
     CSDN : https://blog.csdn.net/IT_ZJYANG
     简书: https://www.jianshu.com/u/4cb2688ddf31
 
+## YWaveLoadView
+    可定制Icon的水波纹进度球,将图标作为填充的内容,同时支持设置纯色填充水波纹。
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YWaveLoadView.gif)
+
 ## YSkillView
     带入场动画的6变形技能图,支持自定义颜色以及属性文案,动态设置分数、最大分值
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YSkillView.gif)

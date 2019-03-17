@@ -33,7 +33,7 @@ public class RoundDrawable {
     //Drawable染色源
     private Drawable drawable;
 
-    RoundDrawable(int color) {
+    public RoundDrawable(int color) {
         this.color = color;
         this.isFill = true;
         this.radiusArr = new float[]{0, 0, 0, 0, 0, 0, 0, 0};

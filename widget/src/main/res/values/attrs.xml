@@ -76,4 +76,18 @@
         <attr name="pay_result_dur" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="WaveLoadView">
+        <attr name="wave_load_mode" format="enum">
+            <enum name="icon" value="1" />
+            <enum name="color" value="2" />
+        </attr>
+        <attr name="wave_load_auto_load" format="boolean" />
+        <attr name="wave_load_icon" format="reference"/>
+        <attr name="wave_load_color" format="reference|color"/>
+        <attr name="wave_load_show_text" format="boolean"/>
+        <attr name="wave_load_text_size" format="dimension"/>
+        <attr name="wave_load_duration" format="integer"/>
+        <attr name="wave_load_stroke_width" format="dimension"/>
+    </declare-styleable>
+
 </resources>

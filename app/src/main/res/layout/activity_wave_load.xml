@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+        <com.zjywidget.widget.waveload.YWaveLoadView
+            android:id="@+id/wave_load_1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="32dp"
+            app:wave_load_color="#ee5b49"
+            app:wave_load_icon="@drawable/ic_mobike"
+            android:visibility="visible"/>
+
+        <com.zjywidget.widget.waveload.YWaveLoadView
+            android:id="@+id/wave_load_2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="32dp"
+            app:wave_load_auto_load="false"
+            app:wave_load_color="#574e5f"
+            app:wave_load_icon="@drawable/ic_keep"/>
+
+        <com.zjywidget.widget.waveload.YWaveLoadView
+            android:id="@+id/wave_load_3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:wave_load_auto_load="false"
+            app:wave_load_color="#cf532f"
+            app:wave_load_icon="@drawable/ic_tantan"
+            android:visibility="visible"/>
+
+
+</LinearLayout>
