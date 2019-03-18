@@ -335,7 +335,7 @@ public class YWaveLoadView extends View {
             mIconPaint.setXfermode(mDuffXfermode);
             //绘制圆形位图
             canvas.drawBitmap(mBallBitmap, 0, 0, mIconPaint);
-            mIconPaint.setXfermode(mDuffXfermode);
+            mIconPaint.setXfermode(null);
         } else {
             mDrawable.draw(canvas);
             mIconPaint.setXfermode(mDuffXfermode);
