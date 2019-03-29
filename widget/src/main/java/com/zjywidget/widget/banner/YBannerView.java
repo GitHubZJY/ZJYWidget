@@ -1,9 +1,6 @@
 package com.zjywidget.widget.banner;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,6 +12,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.zjywidget.widget.banner.indicator.BaseIndicator;
+import com.zjywidget.widget.banner.indicator.CircleIndicator;
+import com.zjywidget.widget.banner.transformers.ScalePageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,19 +36,7 @@ public class YBannerView extends FrameLayout{
     /**
      * 轮播指示器
      */
-    private BannerIndicator mIndicator;
-    /**
-     * 指示器小圆点半径
-     */
-    private int mCellRadius = dp2px(3);
-    /**
-     * 指示器小圆点间距
-     */
-    private int mCellMargin = dp2px(4);
-    /**
-     * 指示器小圆点激活状态的颜色
-     */
-    private int mIndicatorColor = Color.parseColor("#000000");
+    private BaseIndicator mIndicator;
     /**
      * 是否自动滑动
      */
@@ -69,6 +57,14 @@ public class YBannerView extends FrameLayout{
      * 当前真正的下标，初始值为MAX的一半，以解决初始无法左滑的问题
      */
     private int mCurrentIndex = Integer.MAX_VALUE / 2;
+    /**
+     * 图片之间的边距
+     */
+    private int mPageMargin = dp2px(32);
+    /**
+     * 是否启用边距模式（同时显示部分左右Item）
+     */
+    private boolean mIsMargin = true;
     //播放标志
     private boolean isPlay = false;
     //触发轮播的消息标志位
@@ -104,6 +100,9 @@ public class YBannerView extends FrameLayout{
     }
 
     public void init(Context context, AttributeSet attrs){
+        if(mIsMargin){
+            setClipChildren(false);
+        }
         initBannerViewPager(context, attrs);
         initIndicatorView(context);
     }
@@ -116,12 +115,23 @@ public class YBannerView extends FrameLayout{
     private void initBannerViewPager(Context context, AttributeSet attrs){
         mBannerViewPager = new ViewPager(context, attrs);
         LayoutParams bannerParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        if(mIsMargin){
+            bannerParams.setMargins(mPageMargin, dp2px(16), mPageMargin, dp2px(16));
+        }
         addView(mBannerViewPager, bannerParams);
         mBannerViewPager.addOnPageChangeListener(mPageListener);
         mBannerUrlList = new ArrayList<>();
         mAdapter = new InnerPagerAdapter();
         mBannerViewPager.setAdapter(mAdapter);
         mBannerViewPager.setCurrentItem(Integer.MAX_VALUE / 2);
+        mBannerViewPager.setPageTransformer(true, new ScalePageTransformer());
+        if(mIsMargin){
+            if(mBannerUrlList != null && mBannerUrlList.size() > 3){
+                mBannerViewPager.setOffscreenPageLimit(5);
+            }
+            mBannerViewPager.setPageMargin(mPageMargin/2);
+            mBannerViewPager.setClipChildren(false);
+        }
     }
 
     /**
@@ -129,10 +139,19 @@ public class YBannerView extends FrameLayout{
      * @param context
      */
     private void initIndicatorView(Context context){
-        mIndicator = new BannerIndicator(context);
+        mIndicator = new CircleIndicator(context);
         LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40));
         indicatorParams.gravity = BOTTOM | CENTER_HORIZONTAL;
         addView(mIndicator, indicatorParams);
+    }
+
+    public void setIndicator(BaseIndicator indicator){
+        mIndicator = indicator;
+        removeView(mIndicator);
+        LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40));
+        indicatorParams.gravity = BOTTOM | CENTER_HORIZONTAL;
+        addView(mIndicator, indicatorParams);
+        invalidate();
     }
 
     /**
@@ -306,62 +325,6 @@ public class YBannerView extends FrameLayout{
      */
     public void setHasIndicator(boolean flag){
         mIndicator.setVisibility(flag ? VISIBLE : GONE);
-    }
-
-    /**
-     * 指示器View
-     */
-    public class BannerIndicator extends View{
-
-        private int mCellCount;
-        private int currentPosition;
-        private Paint mPaint;
-
-        public BannerIndicator(Context context) {
-            super(context);
-            init();
-        }
-
-        public void init(){
-            mPaint = new Paint();
-            mPaint.setAntiAlias(true);
-        }
-
-        public void setCellCount(int cellCount) {
-            mCellCount = cellCount;
-            invalidate();
-        }
-
-        public void setCurrentPosition(int currentPosition) {
-            this.currentPosition = currentPosition;
-            invalidate();
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-            // 重新测量当前界面的宽度
-            int width = getPaddingLeft() + getPaddingRight() + mCellRadius * 2 * mCellCount + mCellMargin * (mCellCount - 1);
-            int height = getPaddingTop() + getPaddingBottom() + mCellRadius * 2;
-            width = resolveSize(width, widthMeasureSpec);
-            height = resolveSize(height, heightMeasureSpec);
-            setMeasuredDimension(width, height);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            for (int i = 0; i < mCellCount; i++) {
-                if (i == currentPosition) {
-                    mPaint.setColor(mIndicatorColor);
-                } else {
-                    mPaint.setColor(Color.WHITE);
-                }
-                int left = getPaddingLeft() + i * mCellRadius * 2 + mCellMargin * i;
-
-                canvas.drawCircle(left + mCellRadius, getHeight() / 2, mCellRadius, mPaint);
-            }
-        }
     }
 
     /**
