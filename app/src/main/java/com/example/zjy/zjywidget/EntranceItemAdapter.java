@@ -2,13 +2,19 @@ package com.example.zjy.zjywidget;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.zjy.zjywidget.utils.GlideCircleBorderTransform;
 
 import java.util.List;
 
@@ -29,7 +35,8 @@ public class EntranceItemAdapter extends RecyclerView.Adapter<EntranceItemAdapte
     @Override
     public void onBindViewHolder(EntranceViewHolder holder, int position) {
         String name = mViewItemList.get(position).getName();
-        String describe = mViewItemList.get(position).getDescirbe();
+        String describe = mViewItemList.get(position).getDescribe();
+        int previewGifId = mViewItemList.get(position).getPreviewGif();
         final Class testClass = mViewItemList.get(position).getTestClass();
         holder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +48,8 @@ public class EntranceItemAdapter extends RecyclerView.Adapter<EntranceItemAdapte
         });
         holder.mNameTv.setText(TextUtils.isEmpty(name) ? "" : name);
         holder.mDescribeTv.setText(TextUtils.isEmpty(describe) ? "" : describe);
+        RequestOptions options = RequestOptions.bitmapTransform(new GlideCircleBorderTransform(6, Color.LTGRAY));
+        Glide.with(mContext).asGif().load(previewGifId).apply(options).into(holder.mPreviewIv);
     }
 
     @Override
@@ -61,12 +70,14 @@ public class EntranceItemAdapter extends RecyclerView.Adapter<EntranceItemAdapte
         private CardView mRootView;
         private TextView mNameTv;
         private TextView mDescribeTv;
+        private ImageView mPreviewIv;
 
         public EntranceViewHolder(View itemView) {
             super(itemView);
             mRootView = itemView.findViewById(R.id.item_root_view);
             mNameTv = itemView.findViewById(R.id.view_name_tv);
             mDescribeTv = itemView.findViewById(R.id.view_describe_tv);
+            mPreviewIv = itemView.findViewById(R.id.preview_iv);
         }
     }
 }

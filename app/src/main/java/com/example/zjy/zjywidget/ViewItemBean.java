@@ -7,12 +7,14 @@ package com.example.zjy.zjywidget;
 public class ViewItemBean {
 
     private String name;
-    private String descirbe;
+    private String describe;
+    private int previewGif;
     private Class testClass;
 
-    public ViewItemBean(String name, String descirbe, Class testClass) {
+    public ViewItemBean(String name, String describe, int previewGif, Class testClass) {
         this.name = name;
-        this.descirbe = descirbe;
+        this.describe = describe;
+        this.previewGif = previewGif;
         this.testClass = testClass;
     }
 
@@ -32,11 +34,19 @@ public class ViewItemBean {
         this.name = name;
     }
 
-    public String getDescirbe() {
-        return descirbe;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setDescirbe(String descirbe) {
-        this.descirbe = descirbe;
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public int getPreviewGif() {
+        return previewGif;
+    }
+
+    public void setPreviewGif(int previewGif) {
+        this.previewGif = previewGif;
     }
 }
