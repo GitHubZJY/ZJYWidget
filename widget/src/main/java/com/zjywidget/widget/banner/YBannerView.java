@@ -126,9 +126,7 @@ public class YBannerView extends FrameLayout{
         mBannerViewPager.setCurrentItem(Integer.MAX_VALUE / 2);
         mBannerViewPager.setPageTransformer(true, new ScalePageTransformer());
         if(mIsMargin){
-            if(mBannerUrlList != null && mBannerUrlList.size() > 3){
-                mBannerViewPager.setOffscreenPageLimit(5);
-            }
+            mBannerViewPager.setOffscreenPageLimit(5);
             mBannerViewPager.setPageMargin(mPageMargin/2);
             mBannerViewPager.setClipChildren(false);
         }

@@ -1,36 +1,55 @@
 package com.zjywidget.widget.banner.indicator;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 
-public class CircleIndicator extends BaseIndicator{
+/**
+ * 小圆点指示器
+ */
+public class CircleIndicator extends BaseIndicator {
 
     public CircleIndicator(Context context) {
         super(context);
     }
 
     @Override
-    public int getCellMargin() {
+    public float getCellMargin() {
         return dp2px(4);
     }
 
     @Override
-    public int getCellRadius() {
-        return dp2px(3);
+    public float getCellWidth() {
+        return dp2px(6);
     }
 
-    @Override
-    public int getSelectColor() {
-        return Color.parseColor("#000000");
-    }
 
     @Override
-    public int getUnSelectColor() {
-        return Color.parseColor("#ffffff");
+    protected IndicatorCell getCellView() {
+        return new CircleCell(getContext());
     }
 
-    @Override
-    public int getType() {
-        return CIRCLE;
+    public class CircleCell extends IndicatorCell {
+
+
+        public CircleCell(Context context) {
+            super(context);
+        }
+
+        @Override
+        public void select() {
+            mPaint.setColor(Color.parseColor("#ffffff"));
+        }
+
+        @Override
+        public void unSelect() {
+            mPaint.setColor(Color.parseColor("#000000"));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            canvas.drawCircle(getCellWidth() / 2, getCellWidth() / 2, getCellWidth() / 2, mPaint);
+        }
     }
 }

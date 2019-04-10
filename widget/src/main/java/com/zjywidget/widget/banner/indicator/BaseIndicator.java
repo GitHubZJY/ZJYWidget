@@ -1,16 +1,20 @@
 package com.zjywidget.widget.banner.indicator;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.TypedValue;
-import android.view.View;
+import android.widget.LinearLayout;
 
-public abstract class BaseIndicator extends View implements Indicator {
+import java.util.ArrayList;
+import java.util.List;
 
-    private Paint mPaint;
+/**
+ * 指示器基类，封装指示器切换逻辑
+ */
+public abstract class BaseIndicator extends LinearLayout implements Indicator {
+
     private int mCellCount;
     private int mCurrentPos;
+    private List<IndicatorCell> mCellViews;
 
     public BaseIndicator(Context context) {
         super(context);
@@ -18,78 +22,74 @@ public abstract class BaseIndicator extends View implements Indicator {
     }
 
     public void init() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
+        mCellViews = new ArrayList<>();
     }
 
     @Override
     public void setCellCount(int cellCount) {
         mCellCount = cellCount;
+        int i = 1;
+        while (i <= mCellCount) {
+            IndicatorCell view = getCellView();
+            mCellViews.add(view);
+            addView(view);
+            i++;
+        }
     }
 
     @Override
     public void setCurrentPosition(int currentPosition) {
         mCurrentPos = currentPosition;
-        invalidate();
+        invalidateCell();
     }
+
+
+    protected abstract IndicatorCell getCellView();
 
     /**
      * 指示器小圆点半径
      */
-    public abstract int getCellRadius();
+    protected abstract float getCellWidth();
 
     /**
      * 指示器小圆点间距
      */
-    public abstract int getCellMargin();
-
-    /**
-     * 指示器小圆点激活状态的颜色
-     */
-    public abstract int getSelectColor();
-
-    /**
-     * 指示器小圆点未激活状态的颜色
-     */
-    public abstract int getUnSelectColor();
-
-    /**
-     * 指示器类型
-     */
-    public abstract int getType();
-
+    protected abstract float getCellMargin();
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         // 重新测量当前界面的宽度
-        int width = getPaddingLeft() + getPaddingRight() + getCellMargin() * 2 * mCellCount + getCellMargin() * (mCellCount - 1);
-        int height = getPaddingTop() + getPaddingBottom() + getCellRadius() * 2;
-        width = resolveSize(width, widthMeasureSpec);
-        height = resolveSize(height, heightMeasureSpec);
-        setMeasuredDimension(width, height);
+        float width = getPaddingLeft() + getPaddingRight() + getCellMargin() * 2 * mCellCount + getCellMargin() * (mCellCount - 1);
+        float height = getPaddingTop() + getPaddingBottom() + getCellWidth();
+        width = resolveSize((int) width, widthMeasureSpec);
+        height = resolveSize((int) height, heightMeasureSpec);
+        setMeasuredDimension((int) width, (int) height);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        invalidateCell();
+    }
+
+    public void invalidateCell() {
         for (int i = 0; i < mCellCount; i++) {
+            IndicatorCell view = mCellViews.get(i);
+            float left = i * getCellWidth() + getCellMargin() * i;
+            //float right = (i + 1) * getCellWidth() + getCellMargin() * i;
+            view.setLeft((int) left);
+            view.setTop(getHeight() / 2 - (int) getCellWidth() / 2);
+            view.getLayoutParams().width = (int) getCellWidth();
+            view.getLayoutParams().height = (int) getCellWidth();
             if (i == mCurrentPos) {
-                mPaint.setColor(getSelectColor());
+                view.select();
             } else {
-                mPaint.setColor(getUnSelectColor());
+                view.unSelect();
             }
-            int left = getPaddingLeft() + i * getCellRadius() * 2 + getCellMargin() * i;
-            int right = getPaddingLeft() + (i + 1) * getCellRadius() * 2 + getCellMargin() * i;
-            switch (getType()) {
-                case CIRCLE:
-                    canvas.drawCircle(left + getCellRadius(), getHeight() / 2, getCellRadius(), mPaint);
-                    break;
-                case RECTANGLE:
-                    canvas.drawRect(left, getHeight() / 2 - getCellRadius(), right, getHeight() / 2 + getCellRadius(), mPaint);
-                    break;
-            }
+            view.invalidate();
         }
+        invalidate();
     }
 
     /**
@@ -98,7 +98,7 @@ public abstract class BaseIndicator extends View implements Indicator {
      * @param dpVal dp value
      * @return px value
      */
-    public int dp2px(float dpVal) {
+    protected int dp2px(float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal,
                 getContext().getResources().getDisplayMetrics());
     }

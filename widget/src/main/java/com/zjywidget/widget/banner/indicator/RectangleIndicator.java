@@ -1,36 +1,53 @@
 package com.zjywidget.widget.banner.indicator;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 
-public class RectangleIndicator extends BaseIndicator{
+/**
+ * 小矩形指示器
+ */
+public class RectangleIndicator extends BaseIndicator {
 
     public RectangleIndicator(Context context) {
         super(context);
     }
 
     @Override
-    public int getCellMargin() {
+    public float getCellMargin() {
         return dp2px(4);
     }
 
     @Override
-    public int getCellRadius() {
-        return dp2px(3);
+    public float getCellWidth() {
+        return dp2px(6);
     }
 
     @Override
-    public int getSelectColor() {
-        return Color.parseColor("#000000");
+    protected IndicatorCell getCellView() {
+        return new RectangleCell(getContext());
     }
 
-    @Override
-    public int getUnSelectColor() {
-        return Color.parseColor("#ffffff");
-    }
+    public class RectangleCell extends IndicatorCell {
 
-    @Override
-    public int getType() {
-        return RECTANGLE;
+        public RectangleCell(Context context) {
+            super(context);
+        }
+
+        @Override
+        public void select() {
+            mPaint.setColor(Color.parseColor("#ffffff"));
+        }
+
+        @Override
+        public void unSelect() {
+            mPaint.setColor(Color.parseColor("#000000"));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            canvas.drawRect(0, 0, getCellWidth(), getCellWidth(), mPaint);
+        }
     }
 }

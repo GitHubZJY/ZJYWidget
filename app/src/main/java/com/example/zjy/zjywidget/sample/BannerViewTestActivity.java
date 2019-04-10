@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
 import com.zjywidget.widget.banner.YBannerView;
+import com.zjywidget.widget.banner.indicator.CircleIndicator;
 import com.zjywidget.widget.banner.indicator.RectangleIndicator;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class BannerViewTestActivity extends AppCompatActivity {
         }
 
         mBannerView = findViewById(R.id.banner_view);
-        mBannerView.setIndicator(new RectangleIndicator(this));
+        mBannerView.setIndicator(new CircleIndicator(this));
         List<String> bannerData = new ArrayList<>();
         bannerData.add("http://pic41.photophoto.cn/20161217/0017030086344808_b.jpg");
         bannerData.add("http://photocdn.sohu.com/20150114/Img407794285.jpg");
