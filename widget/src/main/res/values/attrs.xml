@@ -90,4 +90,10 @@
         <attr name="wave_load_stroke_width" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="BannerView">
+        <attr name="banner_page_margin" format="dimension" />
+        <attr name="banner_auto_scroll" format="boolean"/>
+        <attr name="banner_toggle_duration" format="integer"/>
+    </declare-styleable>
+
 </resources>

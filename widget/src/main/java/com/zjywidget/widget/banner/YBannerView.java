@@ -1,6 +1,7 @@
 package com.zjywidget.widget.banner;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.zjywidget.widget.R;
 import com.zjywidget.widget.banner.indicator.BaseIndicator;
 import com.zjywidget.widget.banner.indicator.CircleIndicator;
 import com.zjywidget.widget.banner.transformers.ScalePageTransformer;
@@ -40,11 +42,11 @@ public class YBannerView extends FrameLayout{
     /**
      * 是否自动滑动
      */
-    private boolean mIsAutoScroll = true;
+    private boolean mIsAutoScroll;
     /**
      * 默认页面之间自动切换的时间间隔
      */
-    private long mDelayTime = 2000;
+    private long mDelayTime;
     /**
      * 轮播图地址集合
      */
@@ -60,11 +62,11 @@ public class YBannerView extends FrameLayout{
     /**
      * 图片之间的边距
      */
-    private int mPageMargin = dp2px(32);
+    private int mPageMargin;
     /**
      * 是否启用边距模式（同时显示部分左右Item）
      */
-    private boolean mIsMargin = true;
+    private boolean mIsMargin;
     //播放标志
     private boolean isPlay = false;
     //触发轮播的消息标志位
@@ -96,6 +98,7 @@ public class YBannerView extends FrameLayout{
 
     public YBannerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        handleStyleable(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
@@ -105,6 +108,22 @@ public class YBannerView extends FrameLayout{
         }
         initBannerViewPager(context, attrs);
         initIndicatorView(context);
+    }
+
+    private void handleStyleable(Context context, AttributeSet attrs, int defStyle) {
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BannerView, defStyle, 0);
+        try {
+            mIsAutoScroll = ta.getBoolean(R.styleable.BannerView_banner_auto_scroll, true);
+            mPageMargin = ta.getDimensionPixelSize(R.styleable.BannerView_banner_page_margin, 0);
+            mDelayTime = ta.getInteger(R.styleable.BannerView_banner_toggle_duration, 2000);
+            if(mPageMargin > 0){
+                mIsMargin = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ta.recycle();
+        }
     }
 
     /**
@@ -265,6 +284,12 @@ public class YBannerView extends FrameLayout{
      */
     public void setScrollPosition(int position) {
         mCurrentIndex = position;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mHandler.removeMessages(PLAY);
     }
 
     /**

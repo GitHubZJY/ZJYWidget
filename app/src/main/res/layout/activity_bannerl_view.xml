@@ -11,6 +11,9 @@
         android:id="@+id/banner_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:banner_page_margin="32dp"
+        app:banner_toggle_duration="1800"
+        app:banner_auto_scroll="true"
         />
 
 
