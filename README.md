@@ -1,8 +1,8 @@
 # ZJYWidget
-    本项目主要汇集了一些实用酷炫自定义View, 包括源码及demo。
+    本项目主要汇集了一些实用酷炫自定义View, 包括源码及demo。会长期维护, 希望对一些常用的自定义场景有所帮助,一方面提高开发效率,一方面进修自定义View,如有不足之处，敬请指教.
     自定义View源码目录：https://github.com/GitHubZJY/ZJYWidget/tree/master/widget
     demo目录：https://github.com/GitHubZJY/ZJYWidget/tree/master/app
-    本项目会长期维护, 希望对一些常用的自定义场景有所帮助,一方面提高开发效率,一方面进修自定义View,如有不足之处，敬请指教.
+ ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/demo_page.png)
 
 ## 关于作者
     一个在奋斗路上的Android小生
