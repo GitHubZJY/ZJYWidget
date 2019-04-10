@@ -60,16 +60,18 @@ public class GlideCircleBorderTransform extends BitmapTransformation {
         //设置 Shader
         paint.setShader(new BitmapShader(square, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
-        float radius = size / 2f;
+        float radius = size;
         //绘制一个圆
-        canvas.drawCircle(radius, radius, radius, paint);
+        canvas.drawRect(0, 0, radius, radius, paint);
+        //canvas.drawCircle(radius, radius, radius, paint);
 
 
         /************************描边*********************/
         //注意：避免出现描边被屏幕边缘裁掉
         float borderRadius = radius - (borderWidth / 2);
         //画边框
-        canvas.drawCircle(radius, radius, borderRadius, mBorderPaint);
+        canvas.drawRect(0, 0, borderRadius, borderRadius, paint);
+        //canvas.drawCircle(radius, radius, borderRadius, mBorderPaint);
         return result;
     }
 
