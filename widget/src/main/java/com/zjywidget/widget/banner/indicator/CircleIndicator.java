@@ -15,12 +15,12 @@ public class CircleIndicator extends BaseIndicator {
 
     @Override
     public float getCellMargin() {
-        return dp2px(4);
+        return dp2px(8);
     }
 
     @Override
     public float getCellWidth() {
-        return dp2px(6);
+        return dp2px(8);
     }
 
 

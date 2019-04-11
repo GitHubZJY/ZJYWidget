@@ -2,9 +2,11 @@ package com.zjywidget.widget.banner;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -67,6 +69,10 @@ public class YBannerView extends FrameLayout{
      * 是否启用边距模式（同时显示部分左右Item）
      */
     private boolean mIsMargin;
+    /**
+     * Banner圆角
+     */
+    private float mBannerRadius;
     //播放标志
     private boolean isPlay = false;
     //触发轮播的消息标志位
@@ -116,6 +122,7 @@ public class YBannerView extends FrameLayout{
             mIsAutoScroll = ta.getBoolean(R.styleable.BannerView_banner_auto_scroll, true);
             mPageMargin = ta.getDimensionPixelSize(R.styleable.BannerView_banner_page_margin, 0);
             mDelayTime = ta.getInteger(R.styleable.BannerView_banner_toggle_duration, 2000);
+            mBannerRadius = ta.getDimensionPixelSize(R.styleable.BannerView_banner_radius, 0);
             if(mPageMargin > 0){
                 mIsMargin = true;
             }
@@ -157,15 +164,15 @@ public class YBannerView extends FrameLayout{
      */
     private void initIndicatorView(Context context){
         mIndicator = new CircleIndicator(context);
-        LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40));
+        LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(60));
         indicatorParams.gravity = BOTTOM | CENTER_HORIZONTAL;
         addView(mIndicator, indicatorParams);
     }
 
     public void setIndicator(BaseIndicator indicator){
-        mIndicator = indicator;
         removeView(mIndicator);
-        LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40));
+        mIndicator = indicator;
+        LayoutParams indicatorParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(60));
         indicatorParams.gravity = BOTTOM | CENTER_HORIZONTAL;
         addView(mIndicator, indicatorParams);
         invalidate();
@@ -311,6 +318,11 @@ public class YBannerView extends FrameLayout{
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+            CardView cardView = new CardView(getContext());
+            cardView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            cardView.setCardElevation(5);
+            cardView.setRadius(mBannerRadius);
+
             ImageView bannerIv = new ImageView(getContext());
             bannerIv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             bannerIv.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -323,9 +335,10 @@ public class YBannerView extends FrameLayout{
                 position = size + position;
             }
             Glide.with(getContext()).load(mBannerUrlList.get(position)).into(bannerIv);
-            container.addView(bannerIv);
+            cardView.addView(bannerIv);
+            container.addView(cardView);
             //bannerIv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            return bannerIv;
+            return cardView;
         }
 
         @Override

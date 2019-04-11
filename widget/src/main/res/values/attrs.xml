@@ -94,6 +94,7 @@
         <attr name="banner_page_margin" format="dimension" />
         <attr name="banner_auto_scroll" format="boolean"/>
         <attr name="banner_toggle_duration" format="integer"/>
+        <attr name="banner_radius" format="dimension" />
     </declare-styleable>
 
 </resources>
