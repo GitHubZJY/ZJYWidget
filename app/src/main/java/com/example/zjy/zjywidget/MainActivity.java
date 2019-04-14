@@ -12,6 +12,7 @@ import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
 import com.example.zjy.zjywidget.sample.PayLoadingTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 import com.example.zjy.zjywidget.sample.WaveLoadTestActivity;
+import com.example.zjy.zjywidget.sample.YRoundelMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YCircleProgressBar", "带动画的弧形进度条,可自定义颜色,宽度,文案,百分比", R.raw.circle_progressbar, CircleProgressTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YArcMenuView", "常见的弧形弹出菜单(卫星导航菜单),以一个按钮为中心，扇形展开菜单子项", R.raw.arc_menu, ArcMenuTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YPayLoadingView", "仿支付宝的支付成功失败动画，可定制颜色、粗细、动画频率", R.raw.pay_loading_view, PayLoadingTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YRoundelMenu", "一个小巧精致的弹性圆盘菜单，支持囊括多个子View", R.raw.pay_loading_view, YRoundelMenuActivity.class));
 
         mAdapter = new EntranceItemAdapter(this, viewItemBeans);
 
