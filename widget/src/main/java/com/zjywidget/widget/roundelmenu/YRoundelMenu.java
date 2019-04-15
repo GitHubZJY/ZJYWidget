@@ -36,8 +36,6 @@ import com.zjywidget.widget.R;
  */
 public class YRoundelMenu extends ViewGroup {
 
-    public static final String TAG = "FilterMenuLayout";
-
     /**
      * 展开状态
      */
@@ -74,6 +72,11 @@ public class YRoundelMenu extends ViewGroup {
     private Drawable mCenterDrawable;
 
     /**
+     * 子项的宽高
+     */
+    private int itemWidth;
+
+    /**
      * 当前展开的进度（0-1）
      */
     private float expandProgress = 0;
@@ -97,8 +100,6 @@ public class YRoundelMenu extends ViewGroup {
     private Paint mRoundPaint;
     private Paint mCenterPaint;
     private OvalOutline outlineProvider;
-    private Rect menuBounds;
-
     private ValueAnimator mExpandAnimator;
     private ValueAnimator mColorAnimator;
 
@@ -124,24 +125,27 @@ public class YRoundelMenu extends ViewGroup {
         init(context, attrs);
     }
 
-
-    private void init(Context ctx, AttributeSet attrs) {
-        TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.YRoundelMenu);
+    private void handleStyleable(Context context, AttributeSet attrs){
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.YRoundelMenu);
         collapsedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_collapsedRadius, dp2px(22));
         expandedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_expandedRadius, dp2px(84));
         mRoundColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryColor, Color.parseColor("#ffffbb33"));
         mCenterColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryDarkColor, Color.parseColor("#ffff8800"));
         mDuration = ta.getInteger(R.styleable.YRoundelMenu_round_menu_duration, 400);
         mItemAnimIntervalTime = ta.getInteger(R.styleable.YRoundelMenu_round_menu_item_anim_delay, 50);
-
+        itemWidth = dp2px(22);
         ta.recycle();
-
-        center = new Point();
-        center.set(collapsedRadius, expandedRadius);
 
         if (collapsedRadius > expandedRadius) {
             throw new IllegalArgumentException("expandedRadius must bigger than collapsedRadius");
         }
+    }
+
+
+    private void init(Context context, AttributeSet attrs) {
+
+        handleStyleable(context, attrs);
+
         mRoundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mRoundPaint.setColor(mRoundColor);
         mRoundPaint.setStyle(Paint.Style.FILL);
@@ -154,9 +158,14 @@ public class YRoundelMenu extends ViewGroup {
             outlineProvider = new OvalOutline();
             setElevation(dp2px(5));
         }
+        center = new Point();
         mCenterDrawable = getResources().getDrawable(R.drawable.ic_menu);
-        menuBounds = new Rect();
+        state = STATE_COLLAPSE;
 
+        initAnim();
+    }
+
+    private void initAnim(){
         mExpandAnimator = ValueAnimator.ofFloat(0, 0);
         mExpandAnimator.setInterpolator(new OvershootInterpolator());
         mExpandAnimator.setDuration(mDuration);
@@ -182,8 +191,6 @@ public class YRoundelMenu extends ViewGroup {
             }
 
         });
-
-        setSoundEffectsEnabled(true);
     }
 
 
@@ -212,21 +219,11 @@ public class YRoundelMenu extends ViewGroup {
         if (animate) {
             startExpandAnimation();
         } else {
-            setItemsAlpha(1f);
+            for (int i = 0; i < getChildCount(); i++) {
+                getChildAt(i).setAlpha(1);
+            }
         }
     }
-
-
-
-    void toggle(boolean animate) {
-        if (state == STATE_COLLAPSE) {
-            expand(animate);
-        } else if (state == STATE_EXPAND) {
-            collapse(animate);
-        }
-    }
-
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -255,6 +252,17 @@ public class YRoundelMenu extends ViewGroup {
         }
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        for (int i = 0; i < getChildCount(); i++) {
+            View item = getChildAt(i);
+            item.setVisibility(View.GONE);
+            item.setAlpha(0);
+            item.setScaleX(1);
+            item.setScaleY(1);
+        }
+    }
 
 
     @Override
@@ -266,6 +274,7 @@ public class YRoundelMenu extends ViewGroup {
             case MotionEvent.ACTION_DOWN: {
                 isExpand = false;
                 double distance = getPointsDistance(mTouchPoint, center);
+                //如果点击区域与中心点的距离不处于子菜单区域，就收起菜单
                 if (distance > (collapsedRadius + (expandedRadius - collapsedRadius) * expandProgress)
                         || (state == STATE_EXPAND && distance < collapsedRadius)) {
                     if (state == STATE_EXPAND) {
@@ -290,7 +299,6 @@ public class YRoundelMenu extends ViewGroup {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.d(TAG, "onSizeChanged: " + w + ", " + h);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setOutlineProvider(outlineProvider);
         }
@@ -299,24 +307,12 @@ public class YRoundelMenu extends ViewGroup {
         y = h / 2 ;
         center.set(x, y);
 
-        int left = Math.max(getPaddingLeft(), center.x - expandedRadius);
-        int top = Math.max(getPaddingTop(), center.y - expandedRadius);
-        int right = Math.min(w - getPaddingRight(), center.x + expandedRadius);
-        int bottom = Math.min(h - getPaddingBottom(), center.y + expandedRadius);
-
-        menuBounds.set(left, top, right, bottom);
-
         mCenterDrawable.setBounds(center.x - (collapsedRadius - dp2px(10)),
                 center.y - (collapsedRadius - dp2px(10)),
                 center.x + (collapsedRadius - dp2px(10)),
                 center.y + (collapsedRadius - dp2px(10))
         );
-
-
-
     }
-
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -334,40 +330,42 @@ public class YRoundelMenu extends ViewGroup {
         canvas.restoreToCount(count);
     }
 
+    /**
+     * 展开动画
+     */
     void startExpandAnimation() {
-        //animate circle
         mExpandAnimator.setFloatValues(getExpandProgress(), 1f);
         mExpandAnimator.start();
-        //animate color
+
         mColorAnimator.setObjectValues(mColorAnimator.getAnimatedValue() == null ? mRoundColor : mColorAnimator.getAnimatedValue(), mCenterColor);
         mColorAnimator.start();
-        //animate menu item
+
         int delay = mItemAnimIntervalTime;
         for (int i = 0; i < getChildCount(); i++) {
             getChildAt(i).animate()
                     .setStartDelay(delay)
                     .setDuration(mDuration)
                     .alphaBy(0f)
-                    .scaleXBy(0.5f)
+                    .scaleXBy(0f)
                     .scaleX(1f)
-                    .scaleYBy(0.5f)
-                    .scaleY(1.f)
+                    .scaleYBy(0f)
+                    .scaleY(1f)
                     .alpha(1f)
                     .start();
             delay += mItemAnimIntervalTime;
         }
     }
 
+    /**
+     * 收缩动画
+     */
     void startCollapseAnimation() {
-        //animate circle
         mExpandAnimator.setFloatValues(getExpandProgress(), 0f);
         mExpandAnimator.start();
 
-        //animate color
         mColorAnimator.setObjectValues(mColorAnimator.getAnimatedValue() == null ? mCenterColor : mColorAnimator.getAnimatedValue(), mRoundColor);
         mColorAnimator.start();
 
-        //animate menu item
         int delay = mItemAnimIntervalTime;
         for (int i = getChildCount() - 1; i >= 0; i--) {
             getChildAt(i).animate()
@@ -378,12 +376,6 @@ public class YRoundelMenu extends ViewGroup {
                     .scaleY(0)
                     .start();
             delay += mItemAnimIntervalTime;
-        }
-    }
-
-    void setItemsAlpha(float alpha) {
-        for (int i = 0; i < getChildCount(); i++) {
-            getChildAt(i).setAlpha(alpha);
         }
     }
 
@@ -406,11 +398,11 @@ public class YRoundelMenu extends ViewGroup {
         float divider = len / divisor;
 
         for (int i = 0; i < getChildCount(); i++) {
-            float[] coords = new float[2];
-            measure.getPosTan(i * divider + divider * .5f, coords, null);
+            float[] itemPoints = new float[2];
+            measure.getPosTan(i * divider + divider * .5f, itemPoints, null);
             View item = getChildAt(i);
-            item.setX((int) coords[0] - item.getMeasuredWidth() / 2);
-            item.setY((int) coords[1] - item.getMeasuredHeight() / 2);
+            item.setX((int) itemPoints[0] - itemWidth / 2);
+            item.setY((int) itemPoints[1] - itemWidth / 2);
         }
     }
 
