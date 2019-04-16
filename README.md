@@ -8,8 +8,12 @@
     一个在奋斗路上的Android小生
     欢迎关注简书: https://www.jianshu.com/u/4cb2688ddf31
 
+## YRoundelMenu
+    一个小巧精致的弹出式圆盘菜单，支持添加多个子View
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YRoundelMenu.gif)
+
 ## YWaveLoadView
-    可定制Icon的水波纹进度球,支持将任意图标作为填充的内容,同时支持设置纯色填充水波纹。
+    可定制Icon的水波纹进度球,支持将任意图标作为填充的内容,同时支持设置纯色填充水波纹
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YWaveLoadView.gif)
 
 ## YSkillView
