@@ -21,7 +21,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +30,7 @@ import android.view.animation.OvershootInterpolator;
 import com.zjywidget.widget.R;
 
 /**
+ * 自定义轮盘菜单
  * create at 2019/04/04
  * author Yang
  */
@@ -74,7 +74,7 @@ public class YRoundelMenu extends ViewGroup {
     /**
      * 子项的宽高
      */
-    private int itemWidth;
+    private int mItemWidth;
 
     /**
      * 当前展开的进度（0-1）
@@ -103,9 +103,6 @@ public class YRoundelMenu extends ViewGroup {
     private ValueAnimator mExpandAnimator;
     private ValueAnimator mColorAnimator;
 
-    boolean isExpand = false;
-
-
     public YRoundelMenu(Context context) {
         this(context, null);
     }
@@ -129,11 +126,11 @@ public class YRoundelMenu extends ViewGroup {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.YRoundelMenu);
         collapsedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_collapsedRadius, dp2px(22));
         expandedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_expandedRadius, dp2px(84));
-        mRoundColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryColor, Color.parseColor("#ffffbb33"));
-        mCenterColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryDarkColor, Color.parseColor("#ffff8800"));
+        mRoundColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_roundColor, Color.parseColor("#ffffbb33"));
+        mCenterColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_centerColor, Color.parseColor("#ffff8800"));
         mDuration = ta.getInteger(R.styleable.YRoundelMenu_round_menu_duration, 400);
         mItemAnimIntervalTime = ta.getInteger(R.styleable.YRoundelMenu_round_menu_item_anim_delay, 50);
-        itemWidth = dp2px(22);
+        mItemWidth = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_item_width, dp2px(22));
         ta.recycle();
 
         if (collapsedRadius > expandedRadius) {
@@ -228,8 +225,6 @@ public class YRoundelMenu extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(width, height);
@@ -272,22 +267,23 @@ public class YRoundelMenu extends ViewGroup {
         int action = event.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
-                isExpand = false;
                 double distance = getPointsDistance(mTouchPoint, center);
-                //如果点击区域与中心点的距离不处于子菜单区域，就收起菜单
-                if (distance > (collapsedRadius + (expandedRadius - collapsedRadius) * expandProgress)
-                        || (state == STATE_EXPAND && distance < collapsedRadius)) {
-                    if (state == STATE_EXPAND) {
+                if (state == STATE_EXPAND) {
+                    //当前为展开状态，且点击区域与中心点的距离不处于子菜单区域，就收起菜单
+                    if (distance > (collapsedRadius + (expandedRadius - collapsedRadius) * expandProgress)
+                            || distance < collapsedRadius){
                         collapse(true);
                         return true;
                     }
+                    //当前为展开状态，且点击区域与中心点的距离处于子菜单区域，不消费事件
                     return false;
                 } else {
-                    if (state == STATE_COLLAPSE) {
+                    //当前为收缩状态，且点击区域与中心点的距离处于中心圆圈区域，就展开菜单
+                    if (distance < collapsedRadius) {
                         expand(true);
-                        isExpand = true;
                     }
-                    return true;
+                    //当前为收缩状态，且点击区域与中心点的距离不在中心圆圈区域，不消费事件
+                    return false;
                 }
             }
         }
@@ -306,7 +302,7 @@ public class YRoundelMenu extends ViewGroup {
         x = w / 2;
         y = h / 2 ;
         center.set(x, y);
-
+        //中心图标padding设为10dp
         mCenterDrawable.setBounds(center.x - (collapsedRadius - dp2px(10)),
                 center.y - (collapsedRadius - dp2px(10)),
                 center.x + (collapsedRadius - dp2px(10)),
@@ -347,8 +343,8 @@ public class YRoundelMenu extends ViewGroup {
                     .setDuration(mDuration)
                     .alphaBy(0f)
                     .scaleXBy(0f)
-                    .scaleX(1f)
                     .scaleYBy(0f)
+                    .scaleX(1f)
                     .scaleY(1f)
                     .alpha(1f)
                     .start();
@@ -399,10 +395,10 @@ public class YRoundelMenu extends ViewGroup {
 
         for (int i = 0; i < getChildCount(); i++) {
             float[] itemPoints = new float[2];
-            measure.getPosTan(i * divider + divider * .5f, itemPoints, null);
+            measure.getPosTan(i * divider + divider * 0.5f, itemPoints, null);
             View item = getChildAt(i);
-            item.setX((int) itemPoints[0] - itemWidth / 2);
-            item.setY((int) itemPoints[1] - itemWidth / 2);
+            item.setX((int) itemPoints[0] - mItemWidth / 2);
+            item.setY((int) itemPoints[1] - mItemWidth / 2);
         }
     }
 
