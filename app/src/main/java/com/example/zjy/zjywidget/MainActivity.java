@@ -10,6 +10,7 @@ import com.example.zjy.zjywidget.sample.BannerViewTestActivity;
 import com.example.zjy.zjywidget.sample.CameraViewTestActivity;
 import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
 import com.example.zjy.zjywidget.sample.PayLoadingTestActivity;
+import com.example.zjy.zjywidget.sample.ScratchTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 import com.example.zjy.zjywidget.sample.WaveLoadTestActivity;
 import com.example.zjy.zjywidget.sample.YRoundelMenuActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YCircleProgressBar", "带动画的弧形进度条,可自定义颜色,宽度,文案,百分比", R.raw.circle_progressbar, CircleProgressTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YArcMenuView", "常见的弧形弹出菜单(卫星导航菜单),以一个按钮为中心，扇形展开菜单子项", R.raw.arc_menu, ArcMenuTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YPayLoadingView", "仿支付宝的支付成功失败动画，可定制颜色、粗细、动画频率", R.raw.pay_loading_view, PayLoadingTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YScratchView", "常见的刮刮乐效果，支持更换底图和布局，支持刮出结果的监听", R.raw.scratch_view, ScratchTestActivity.class));
 
         mAdapter = new EntranceItemAdapter(this, viewItemBeans);
 

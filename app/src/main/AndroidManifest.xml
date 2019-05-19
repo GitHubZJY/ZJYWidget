@@ -57,6 +57,10 @@
 
         </activity>
 
+        <activity android:name=".sample.ScratchTestActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

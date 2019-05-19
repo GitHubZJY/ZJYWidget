@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tip_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scratch_layout"
+        android:layout_marginBottom="24dp"
+        android:textSize="18sp"
+        android:text="恭喜你中奖了！"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/scratch_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="我是奖品布局,客户端自己定义"/>
+        <com.zjywidget.widget.scratchview.YScratchView
+            android:id="@+id/scratch_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            />
+    </FrameLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

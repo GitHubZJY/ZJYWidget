@@ -98,21 +98,19 @@
     </declare-styleable>
 
     <declare-styleable name="YRoundelMenu">
-
         <attr name="round_menu_primaryColor" format="color|reference"/>
-
         <attr name="round_menu_primaryDarkColor" format="color|reference"/>
-
         <attr name="round_menu_expandedRadius" format="dimension"/>
-
         <attr name="round_menu_collapsedRadius" format="dimension"/>
-
         <attr name="round_menu_duration" format="integer" />
-
         <attr name="round_menu_item_anim_delay" format="integer" />
-
         <attr name="round_menu_sweepAngle" format="integer"/>
+    </declare-styleable>
 
+    <declare-styleable name="YScratchView">
+        <attr name="scratch_radius" format="dimension" />
+        <attr name="scratch_mark_color" format="color|reference" />
+        <attr name="scratch_drawable" format="reference" />
     </declare-styleable>
 
 </resources>

@@ -267,27 +267,30 @@ public class YRoundelMenu extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Point mTouchPoint = new Point();
-        mTouchPoint.set((int) event.getX(), (int) event.getY());
+        Point touchPoint = new Point();
+        touchPoint.set((int) event.getX(), (int) event.getY());
         int action = event.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
-                isExpand = false;
-                double distance = getPointsDistance(mTouchPoint, center);
-                //如果点击区域与中心点的距离不处于子菜单区域，就收起菜单
-                if (distance > (collapsedRadius + (expandedRadius - collapsedRadius) * expandProgress)
-                        || (state == STATE_EXPAND && distance < collapsedRadius)) {
-                    if (state == STATE_EXPAND) {
+                //计算触摸点与中心点的距离
+                double distance = getPointsDistance(touchPoint, center);
+                if(state == STATE_EXPAND){
+                    //展开状态下，如果点击区域与中心点的距离不处于子菜单区域，就收起菜单
+                    if (distance > (collapsedRadius + (expandedRadius - collapsedRadius) * expandProgress)
+                            || distance < collapsedRadius) {
                         collapse(true);
                         return true;
                     }
+                    //展开状态下，如果点击区域处于子菜单区域，则不消费事件
                     return false;
-                } else {
-                    if (state == STATE_COLLAPSE) {
+                }else{
+                    //收缩状态下，如果点击区域处于中心圆圈范围内，则展开菜单
+                    if(distance < collapsedRadius){
                         expand(true);
-                        isExpand = true;
+                        return true;
                     }
-                    return true;
+                    //收缩状态下，如果点击区域不在中心圆圈范围内，则不消费事件
+                    return false;
                 }
             }
         }
@@ -384,22 +387,26 @@ public class YRoundelMenu extends ViewGroup {
      * 计算每个子菜单的坐标
      */
     private void calculateMenuItemPosition() {
-        float itemRadius = (expandedRadius + collapsedRadius) / 2f;
+        float radius = (expandedRadius + collapsedRadius) / 2f;
         RectF area = new RectF(
-                center.x - itemRadius,
-                center.y - itemRadius,
-                center.x + itemRadius,
-                center.y + itemRadius);
+                center.x - radius,
+                center.y - radius,
+                center.x + radius,
+                center.y + radius);
         Path path = new Path();
         path.addArc(area, 0, 360);
+
         PathMeasure measure = new PathMeasure(path, false);
+        //测量圆的总长度
         float len = measure.getLength();
-        int divisor = getChildCount();
-        float divider = len / divisor;
+        //子菜单数量
+        int count = getChildCount();
+        //每个菜单之间的间距
+        float itemLength = len / count;
 
         for (int i = 0; i < getChildCount(); i++) {
             float[] itemPoints = new float[2];
-            measure.getPosTan(i * divider + divider * .5f, itemPoints, null);
+            measure.getPosTan(i * itemLength, itemPoints, null);
             View item = getChildAt(i);
             item.setX((int) itemPoints[0] - itemWidth / 2);
             item.setY((int) itemPoints[1] - itemWidth / 2);
