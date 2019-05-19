@@ -39,3 +39,7 @@
 ## YBannerView
     封装ViewPager快速集成轮播功能,支持自定义指示器大小颜色,支持网络图加载,同时支持多种切换动画
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YBannerView.gif)
+
+## YScratchView
+    常见的刮刮乐效果，支持更换底图和布局，支持刮出结果的监听
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YScratchView.gif)
