@@ -74,7 +74,7 @@ public class YRoundelMenu extends ViewGroup {
     /**
      * 子项的宽高
      */
-    private int itemWidth;
+    private int mItemWidth;
 
     /**
      * 当前展开的进度（0-1）
@@ -103,9 +103,6 @@ public class YRoundelMenu extends ViewGroup {
     private ValueAnimator mExpandAnimator;
     private ValueAnimator mColorAnimator;
 
-    boolean isExpand = false;
-
-
     public YRoundelMenu(Context context) {
         this(context, null);
     }
@@ -129,11 +126,11 @@ public class YRoundelMenu extends ViewGroup {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.YRoundelMenu);
         collapsedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_collapsedRadius, dp2px(22));
         expandedRadius = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_expandedRadius, dp2px(84));
-        mRoundColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryColor, Color.parseColor("#ffffbb33"));
-        mCenterColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_primaryDarkColor, Color.parseColor("#ffff8800"));
+        mRoundColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_roundColor, Color.parseColor("#ffffbb33"));
+        mCenterColor = ta.getColor(R.styleable.YRoundelMenu_round_menu_centerColor, Color.parseColor("#ffff8800"));
         mDuration = ta.getInteger(R.styleable.YRoundelMenu_round_menu_duration, 400);
         mItemAnimIntervalTime = ta.getInteger(R.styleable.YRoundelMenu_round_menu_item_anim_delay, 50);
-        itemWidth = dp2px(22);
+        mItemWidth = ta.getDimensionPixelSize(R.styleable.YRoundelMenu_round_menu_item_width, dp2px(22));
         ta.recycle();
 
         if (collapsedRadius > expandedRadius) {
@@ -228,8 +225,6 @@ public class YRoundelMenu extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(width, height);
@@ -309,7 +304,7 @@ public class YRoundelMenu extends ViewGroup {
         x = w / 2;
         y = h / 2 ;
         center.set(x, y);
-
+        //中心图标padding设为10dp
         mCenterDrawable.setBounds(center.x - (collapsedRadius - dp2px(10)),
                 center.y - (collapsedRadius - dp2px(10)),
                 center.x + (collapsedRadius - dp2px(10)),
@@ -350,8 +345,8 @@ public class YRoundelMenu extends ViewGroup {
                     .setDuration(mDuration)
                     .alphaBy(0f)
                     .scaleXBy(0f)
-                    .scaleX(1f)
                     .scaleYBy(0f)
+                    .scaleX(1f)
                     .scaleY(1f)
                     .alpha(1f)
                     .start();
@@ -387,29 +382,25 @@ public class YRoundelMenu extends ViewGroup {
      * 计算每个子菜单的坐标
      */
     private void calculateMenuItemPosition() {
-        float radius = (expandedRadius + collapsedRadius) / 2f;
+        float itemRadius = (expandedRadius + collapsedRadius) / 2f;
         RectF area = new RectF(
-                center.x - radius,
-                center.y - radius,
-                center.x + radius,
-                center.y + radius);
+                center.x - itemRadius,
+                center.y - itemRadius,
+                center.x + itemRadius,
+                center.y + itemRadius);
         Path path = new Path();
         path.addArc(area, 0, 360);
-
         PathMeasure measure = new PathMeasure(path, false);
-        //测量圆的总长度
         float len = measure.getLength();
-        //子菜单数量
-        int count = getChildCount();
-        //每个菜单之间的间距
-        float itemLength = len / count;
+        int divisor = getChildCount();
+        float divider = len / divisor;
 
         for (int i = 0; i < getChildCount(); i++) {
             float[] itemPoints = new float[2];
-            measure.getPosTan(i * itemLength, itemPoints, null);
+            measure.getPosTan(i * divider + divider * 0.5f, itemPoints, null);
             View item = getChildAt(i);
-            item.setX((int) itemPoints[0] - itemWidth / 2);
-            item.setY((int) itemPoints[1] - itemWidth / 2);
+            item.setX((int) itemPoints[0] - mItemWidth / 2);
+            item.setY((int) itemPoints[1] - mItemWidth / 2);
         }
     }
 
