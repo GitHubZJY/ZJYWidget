@@ -61,6 +61,10 @@
 
         </activity>
 
+        <activity android:name=".sample.YSwitchTestActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

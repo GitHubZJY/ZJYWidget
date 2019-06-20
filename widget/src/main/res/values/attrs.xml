@@ -113,4 +113,12 @@
         <attr name="scratch_drawable" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="YSwitchView">
+        <attr name="switch_bar_radius" format="dimension" />
+        <attr name="switch_open_color" format="color|reference" />
+        <attr name="switch_close_color" format="reference" />
+        <attr name="switch_duration" format="integer" />
+    </declare-styleable>
+
+
 </resources>
