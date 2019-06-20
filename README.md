@@ -4,7 +4,7 @@
     demo目录：https://github.com/GitHubZJY/ZJYWidget/tree/master/app
  ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/demo_page.png)
 
-## 关于作者
+## About Me
     一个在奋斗路上的Android小生
     欢迎关注简书: https://www.jianshu.com/u/4cb2688ddf31
 
