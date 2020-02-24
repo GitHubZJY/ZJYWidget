@@ -12,6 +12,10 @@
     一个小巧精致的弹出式圆盘菜单，支持添加多个子View
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YRoundelMenu.gif)
 
+## YFallingSurfaceView
+    直播交互常见的红包雨效果，自定义红包数量、红包样式、降落速度
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YFallingSurfaceView.gif)
+
 ## YWaveLoadView
     可定制Icon的水波纹进度球,支持将任意图标作为填充的内容,同时支持设置纯色填充水波纹
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YWaveLoadView.gif)
