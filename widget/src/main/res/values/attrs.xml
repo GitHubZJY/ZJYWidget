@@ -120,5 +120,13 @@
         <attr name="switch_duration" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="YWheelView">
+        <attr name="wheel_item_count" format="integer" />
+        <attr name="wheel_item_select_txt_color" format="color|reference" />
+        <attr name="wheel_item_normal_txt_color" format="color|reference" />
+        <attr name="wheel_item_select_txt_scale" format="float" />
+        <attr name="wheel_item_normal_txt_scale" format="float" />
+    </declare-styleable>
+
 
 </resources>

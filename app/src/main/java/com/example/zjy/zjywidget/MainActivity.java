@@ -19,7 +19,7 @@ import com.example.zjy.zjywidget.sample.ScratchTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 import com.example.zjy.zjywidget.sample.WaveLoadTestActivity;
 import com.example.zjy.zjywidget.sample.YRoundelMenuActivity;
-import com.example.zjy.zjywidget.sample.YSwitchTestActivity;
+import com.example.zjy.zjywidget.sample.YWheelViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YPayLoadingView", "仿支付宝的支付成功失败动画，可定制颜色、粗细、动画频率", R.raw.pay_loading_view, PayLoadingTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YScratchView", "常见的刮刮乐效果，支持更换底图和布局，支持刮出结果的监听", R.raw.scratch_view, ScratchTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YFallingSurfaceView", "直播交互常见的红包雨效果，自定义红包数量、红包样式、降落速度", R.raw.falling_surface, FallingSurfaceTestActivity.class));
+        //viewItemBeans.add(new ViewItemBean("YWheelView", "可上下滑动选择的选项菜单，支持透明度、大小的定制、边界弹性效果", R.raw.switch_view, YWheelViewActivity.class));
+
 
         //viewItemBeans.add(new ViewItemBean("YSwitchView", "高仿IOS风格的开关控件，包括过渡动画，支持定制颜色、大小、切换动画时长", R.raw.switch_view, YSwitchTestActivity.class));
 
