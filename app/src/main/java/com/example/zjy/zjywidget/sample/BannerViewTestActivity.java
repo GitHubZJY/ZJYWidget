@@ -1,14 +1,13 @@
 package com.example.zjy.zjywidget.sample;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
 import com.zjywidget.widget.banner.YBannerView;
 import com.zjywidget.widget.banner.indicator.CircleIndicator;
-import com.zjywidget.widget.banner.indicator.RectangleIndicator;
 
 import java.util.ArrayList;
 import java.util.List;

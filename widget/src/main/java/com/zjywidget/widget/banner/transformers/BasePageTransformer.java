@@ -1,7 +1,7 @@
 package com.zjywidget.widget.banner.transformers;
 
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 
 public abstract class BasePageTransformer implements ViewPager.PageTransformer {

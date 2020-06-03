@@ -1,8 +1,8 @@
 package com.example.zjy.zjywidget.sample;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
 import com.zjywidget.widget.skillview.YSkillView;

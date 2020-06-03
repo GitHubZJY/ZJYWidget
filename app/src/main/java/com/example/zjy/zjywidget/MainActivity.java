@@ -2,10 +2,10 @@ package com.example.zjy.zjywidget;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +19,6 @@ import com.example.zjy.zjywidget.sample.ScratchTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 import com.example.zjy.zjywidget.sample.WaveLoadTestActivity;
 import com.example.zjy.zjywidget.sample.YRoundelMenuActivity;
-import com.example.zjy.zjywidget.sample.YWheelViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;

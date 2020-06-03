@@ -1,6 +1,6 @@
 package com.zjywidget.widget.banner.transformers;
 
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 public class ZoomCenterPageTransformer extends BasePageTransformer {

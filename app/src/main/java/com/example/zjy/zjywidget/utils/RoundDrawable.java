@@ -3,7 +3,7 @@ package com.example.zjy.zjywidget.utils;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 /**
  * Created by YANG on 2018/3/1.
