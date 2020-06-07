@@ -128,5 +128,16 @@
         <attr name="wheel_item_normal_txt_scale" format="float" />
     </declare-styleable>
 
+    <declare-styleable name="YProfileSlideView">
+        <attr name="profile_slide_corner" format="dimension" />
+        <attr name="profile_slide_width" format="dimension" />
+        <attr name="profile_slide_text_size" format="dimension" />
+        <attr name="profile_slide_auto_slide_time" format="integer" />
+        <attr name="profile_slide_slider_color" format="color|reference" />
+        <attr name="profile_slide_background_color" format="color|reference" />
+        <attr name="profile_slide_progress_color" format="color|reference" />
+        <attr name="profile_slide_tip_text" format="string" />
+        <attr name="profile_slide_padding" format="dimension" />
+    </declare-styleable>
 
 </resources>

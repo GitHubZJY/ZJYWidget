@@ -19,8 +19,10 @@ import android.view.View;
 import com.zjywidget.widget.R;
 
 /**
- * Created by YANG on 2019/5/7.
- * 自定义刮刮乐View
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/5/7 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 自定义刮刮乐View <br>
  */
 public class YScratchView extends View {
 

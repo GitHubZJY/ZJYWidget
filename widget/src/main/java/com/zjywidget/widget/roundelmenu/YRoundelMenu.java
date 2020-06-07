@@ -31,8 +31,10 @@ import android.view.animation.OvershootInterpolator;
 import com.zjywidget.widget.R;
 
 /**
- * create at 2019/04/04
- * author Yang
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/04/04 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 炫酷圆盘菜单View <br>
  */
 public class YRoundelMenu extends ViewGroup {
 

@@ -22,6 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2020/2/20 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 直播红包雨效果 <br>
+ */
 public class FallingSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     /**

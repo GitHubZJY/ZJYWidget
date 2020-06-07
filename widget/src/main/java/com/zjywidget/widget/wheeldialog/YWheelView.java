@@ -19,7 +19,12 @@ import com.zjywidget.widget.R;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-
+/**
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2020/06/03 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 简约款上下滑动选择器 <br>
+ */
 public class YWheelView extends View {
 
     private static final String TAG = "MyWheelView";

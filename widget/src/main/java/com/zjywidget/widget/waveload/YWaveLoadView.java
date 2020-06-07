@@ -26,8 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by YANG on 2019/03/17.
- * 可定制图标的水波纹进度球
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/03/17 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 可定制图标的水波纹进度球 <br>
  */
 public class YWaveLoadView extends View {
 

@@ -17,11 +17,11 @@ import com.zjywidget.widget.R;
 
 
 /**
- * Created by YANG on 2017/3/20.
- * <p>
- * 圆形动画进度条
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2017/3/20 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 圆形动画进度条 <br>
  */
-
 public class CircleProgressBar extends View {
 
 

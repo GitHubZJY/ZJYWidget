@@ -20,10 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by YANG on 2019/2/16.
- * 卫星式弧形导航菜单
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/2/16 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 卫星式弧形导航菜单 <br>
  */
-
 public class YArcMenuView extends FrameLayout implements View.OnClickListener {
 
     public static final String TAG = "ArcMenuView";

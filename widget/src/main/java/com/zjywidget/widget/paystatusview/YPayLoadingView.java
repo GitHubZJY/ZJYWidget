@@ -16,10 +16,11 @@ import android.view.View;
 import com.zjywidget.widget.R;
 
 /**
- * Created by YANG on 2019/2/18.
- * 仿支付宝支付结果View
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/2/18 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 仿支付宝支付结果View <br>
  */
-
 public class YPayLoadingView extends View {
 
     public static final String TAG = "PayLoadingView";

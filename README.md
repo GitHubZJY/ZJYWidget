@@ -20,6 +20,10 @@
     可定制Icon的水波纹进度球,支持将任意图标作为填充的内容,同时支持设置纯色填充水波纹
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YWaveLoadView.gif)
 
+## YProfileSlideView
+    炫酷的侧滑解锁效果，包括文字扫光效果，支持开关自动归位、圆角及色值等样式的定制
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YProfileSlideView.gif)
+
 ## YSkillView
     带入场动画的6边形技能图,支持自定义颜色以及属性文案,动态设置分数、最大分值
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YSkillView.gif)

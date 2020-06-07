@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by YANG on 2019/1/9.
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/1/9 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 网状技能图谱View <br>
  */
-
 public class YSkillView extends View {
 
     private Paint mPaint;

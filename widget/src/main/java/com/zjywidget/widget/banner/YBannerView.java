@@ -26,10 +26,11 @@ import static android.view.Gravity.BOTTOM;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
 /**
- * Created by YANG on 2018/8/31.
- * 自定义Banner轮播View
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2018/8/31 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 自定义Banner轮播View <br>
  */
-
 public class YBannerView extends FrameLayout{
 
     /**

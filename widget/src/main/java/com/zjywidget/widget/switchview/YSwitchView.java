@@ -18,9 +18,11 @@ import android.view.animation.LinearInterpolator;
 import com.zjywidget.widget.R;
 
 /**
- * Created by Yang on 2019/6/15.
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/6/20 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 仿IOS开关View <br>
  */
-
 public class YSwitchView extends View {
 
     private final int DEFAULT_WIDTH = 200;

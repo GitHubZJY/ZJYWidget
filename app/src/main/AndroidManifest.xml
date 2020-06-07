@@ -73,6 +73,10 @@
 
         </activity>
 
+        <activity android:name=".sample.YProfileSlideTestActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

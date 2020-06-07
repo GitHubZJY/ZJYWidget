@@ -21,9 +21,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * @describe 支持裁剪扫描的遮罩相机
- * @author YANG
- * @data 2019/02/11
+ * <b>Project:</b> https://github.com/GitHubZJY/ZJYWidget <br>
+ * <b>Create Date:</b> 2019/02/11 <br>
+ * <b>@author:</b> Yang <br>
+ * <b>Description:</b> 支持裁剪扫描的遮罩相机 <br>
  */
 public class YCameraMarkView extends FrameLayout {
 
