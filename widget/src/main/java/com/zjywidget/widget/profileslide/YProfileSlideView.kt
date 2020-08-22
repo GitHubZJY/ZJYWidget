@@ -141,6 +141,9 @@ class YProfileSlideView : View {
             mSliderRectF.left = it.animatedValue as Float
             mSliderRectF.right = mSliderRectF.left + mSliderWidth
             mProgressRectF.right = mSliderRectF.right
+            if (mSliderRectF.right == mBgRectF.width() - mPadding) {
+                mListener?.slideEnd()
+            }
             invalidate()
         }
 
@@ -319,5 +322,15 @@ class YProfileSlideView : View {
         mAutoSlideAnimator?.apply {
             cancel()
         }
+    }
+
+    var mListener: SlideListener? = null
+
+    public fun addSlideListener(listener: SlideListener?) {
+        mListener = listener
+    }
+
+    interface SlideListener {
+        fun slideEnd()
     }
 }
