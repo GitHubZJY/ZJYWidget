@@ -111,6 +111,7 @@
         <attr name="scratch_radius" format="dimension" />
         <attr name="scratch_mark_color" format="color|reference" />
         <attr name="scratch_drawable" format="reference" />
+        <attr name="scratch_foreground_drawable" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="YSwitchView">

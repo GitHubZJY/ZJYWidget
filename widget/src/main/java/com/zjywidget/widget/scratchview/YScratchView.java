@@ -27,7 +27,7 @@ import com.zjywidget.widget.R;
 public class YScratchView extends View {
 
     //灰色蒙层和底部图片
-    private Bitmap mGrayBm, mBgBm;
+    private Bitmap mGrayBm, mBgBm, mFgBm, mCopyBm;
     //手指触摸过的路径
     private Path mTouchPath;
     //灰色蒙层的画布
@@ -53,6 +53,10 @@ public class YScratchView extends View {
      */
     private int mResId;
     /**
+     * 蒙层图片资源ID
+     */
+    private int mForegroundResId;
+    /**
      * 刮开的路径的粗细
      */
     private int mScratchRadius;
@@ -75,9 +79,10 @@ public class YScratchView extends View {
     }
 
     private void handleStyleable(Context context, AttributeSet attrs, int defStyle) {
-        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WaveLoadView, defStyle, 0);
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.YScratchView, defStyle, 0);
         try {
-            mResId = ta.getInteger(R.styleable.YScratchView_scratch_drawable, -1);
+            mResId = ta.getResourceId(R.styleable.YScratchView_scratch_drawable, -1);
+            mForegroundResId = ta.getResourceId(R.styleable.YScratchView_scratch_foreground_drawable, -1);
             mScratchRadius = ta.getDimensionPixelSize(R.styleable.YScratchView_scratch_radius, 40);
             mMarkColor = ta.getColor(R.styleable.YScratchView_scratch_mark_color, Color.LTGRAY);
         } catch (Exception e) {
@@ -91,7 +96,7 @@ public class YScratchView extends View {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
         handleStyleable(context, attrs, defStyle);
 
-        mBgPaint = new Paint();
+        mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBgPaint.setColor(mMarkColor);
 
         mPathPaint = new Paint();
@@ -107,6 +112,10 @@ public class YScratchView extends View {
 
         if (mResId != -1) {
             mBgBm = BitmapFactory.decodeResource(getResources(), mResId);
+        }
+
+        if (mForegroundResId != -1) {
+            mFgBm = BitmapFactory.decodeResource(getResources(), mForegroundResId);
         }
         //开启线程实时监听划出结果
         mThread = new Thread(mRunnable);
@@ -132,20 +141,32 @@ public class YScratchView extends View {
     }
 
     private void initGrayArea() {
-        mGrayBm = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
-        mGrayCanvas = new Canvas(mGrayBm);
-        mGrayCanvas.drawColor(Color.LTGRAY);
+        if (mFgBm != null) {
+            mCopyBm = mFgBm.copy(Bitmap.Config.ARGB_8888, true);
+            mGrayCanvas = new Canvas(mCopyBm);
+        } else {
+            mGrayBm = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+            mGrayCanvas = new Canvas(mGrayBm);
+            mGrayCanvas.drawColor(Color.LTGRAY);
+        }
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mResId != -1) {
-            canvas.drawBitmap(mBgBm, 0, 0, null);
+            canvas.drawBitmap(mBgBm, 0, 0, mBgPaint);
         }
-        canvas.drawBitmap(mGrayBm, 0, 0, mBgPaint);
-        mGrayCanvas.drawRect(0, 0, mWidth, mHeight, mBgPaint);
+        int layerId = canvas.saveLayer(0, 0, mWidth, mHeight, null, Canvas.ALL_SAVE_FLAG);
+        if (mForegroundResId != -1) {
+            canvas.drawBitmap(mCopyBm, 0, 0, mBgPaint);
+        } else {
+            canvas.drawBitmap(mGrayBm, 0, 0, mBgPaint);
+            mGrayCanvas.drawRect(0, 0, mWidth, mHeight, mBgPaint);
+        }
         mGrayCanvas.drawPath(mTouchPath, mPathPaint);
+        canvas.restoreToCount(layerId);
     }
 
     @Override
@@ -183,7 +204,13 @@ public class YScratchView extends View {
                 if (mIsInit) {
                     for (int i = 0; i < mWidth; i++) {
                         for (int j = 0; j < mHeight; j++) {
-                            int pixel = mGrayBm.getPixel(i, j);
+                            int pixel;
+                            if (mCopyBm == null) {
+                                pixel = mGrayBm.getPixel(i, j);
+                            } else {
+                                pixel = mCopyBm.getPixel(i, j);
+                            }
+
                             if (pixel == 0) {
                                 mScratchSize++;
                             }
