@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.zjy.zjywidget.sample.ArcMenuTestActivity;
 import com.example.zjy.zjywidget.sample.BannerViewTestActivity;
+import com.example.zjy.zjywidget.sample.BarChartTestActivity;
 import com.example.zjy.zjywidget.sample.CameraViewTestActivity;
 import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
 import com.example.zjy.zjywidget.sample.FallingSurfaceTestActivity;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YScratchView", "常见的刮刮乐效果，支持更换底图和布局，支持刮出结果的监听", R.raw.scratch_view, ScratchTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YFallingSurfaceView", "直播交互常见的红包雨效果，自定义红包数量、红包样式、降落速度", R.raw.falling_surface, FallingSurfaceTestActivity.class));
         viewItemBeans.add(new ViewItemBean("YProfileSlideView", "炫酷的侧滑解锁效果，支持开关自动归位、圆角及色值等样式的定制", R.raw.profile_slide, YProfileSlideTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YBarChart", "带入场动画的柱形图表，根据输入的数据自动计算显示比例，支持自定义宽度颜色", R.raw.profile_slide, BarChartTestActivity.class));
         //viewItemBeans.add(new ViewItemBean("YWheelView", "可上下滑动选择的选项菜单，支持透明度、大小的定制、边界弹性效果", R.raw.switch_view, YWheelViewActivity.class));
         //viewItemBeans.add(new ViewItemBean("YSwitchView", "高仿IOS风格的开关控件，包括过渡动画，支持定制颜色、大小、切换动画时长", R.raw.switch_view, YSwitchTestActivity.class));
 

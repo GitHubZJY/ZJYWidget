@@ -77,6 +77,10 @@
 
         </activity>
 
+        <activity android:name=".sample.BarChartTestActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

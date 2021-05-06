@@ -141,4 +141,12 @@
         <attr name="profile_slide_padding" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="YBarChart">
+        <attr name="bar_chart_line_count" format="integer" />
+        <attr name="bar_chart_line_color" format="color|reference" />
+        <attr name="bar_chart_data_color" format="color|reference" />
+        <attr name="bar_chart_column_color" format="color|reference" />
+        <attr name="bar_chart_anim" format="boolean" />
+    </declare-styleable>
+
 </resources>
