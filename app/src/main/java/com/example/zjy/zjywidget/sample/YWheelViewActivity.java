@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.wheeldialog.YSelectDialog;
 import com.zjywidget.widget.wheeldialog.YWheelView;
 
@@ -15,19 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 74215 on 2019/4/14.
+ * Created by Yang on 2019/4/14.
  */
-public class YWheelViewActivity extends AppCompatActivity {
+public class YWheelViewActivity extends BaseTestActivity {
+
+    @Override
+    protected String getTitleStr() {
+        return "YWheelView";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheel_view);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("YWheelView");
-        }
 
         YWheelView wheelView = findViewById(R.id.wheel_view);
         List<String> mItems = new ArrayList<>();

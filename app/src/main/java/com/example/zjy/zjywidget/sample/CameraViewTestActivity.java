@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.camerapreview.YCameraMarkView;
 
-public class CameraViewTestActivity extends AppCompatActivity {
+public class CameraViewTestActivity extends BaseTestActivity {
 
     private YCameraMarkView mCameraView;
     private ImageView mTakeBtn;
@@ -20,6 +21,11 @@ public class CameraViewTestActivity extends AppCompatActivity {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     private boolean mIsTaken;
+
+    @Override
+    protected String getTitleStr() {
+        return "";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

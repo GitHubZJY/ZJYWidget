@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.banner.YBannerView;
 import com.zjywidget.widget.banner.indicator.CircleIndicator;
 
@@ -13,22 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 74215 on 2019/2/12.
+ * Created by Yang on 2019/2/12.
  */
 
-public class BannerViewTestActivity extends AppCompatActivity {
+public class BannerViewTestActivity extends BaseTestActivity {
 
     private YBannerView mBannerView;
+
+    @Override
+    protected String getTitleStr() {
+        return "YBannerView";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bannerl_view);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("YBannerView");
-        }
 
         mBannerView = findViewById(R.id.banner_view);
         mBannerView.setIndicator(new CircleIndicator(this));

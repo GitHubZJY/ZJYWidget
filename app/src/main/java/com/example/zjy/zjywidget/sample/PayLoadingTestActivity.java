@@ -7,16 +7,23 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.paystatusview.YPayLoadingView;
 
 /**
- * Created by 74215 on 2019/2/19.
+ * Created by Yang on 2019/2/19.
  */
 
-public class PayLoadingTestActivity extends Activity implements View.OnClickListener{
+public class PayLoadingTestActivity extends BaseTestActivity implements View.OnClickListener{
 
     YPayLoadingView mPayLoadingView;
     Button mStartBtn, mSuccessBtn, mFailBtn;
+
+
+    @Override
+    protected String getTitleStr() {
+        return "YPayLoadingView";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

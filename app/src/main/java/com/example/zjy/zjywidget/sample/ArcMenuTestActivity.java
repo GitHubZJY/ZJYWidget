@@ -7,28 +7,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.arcmenu.YArcMenuView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 74215 on 2019/2/12.
+ * Created by Yang on 2019/2/12.
  */
 
-public class ArcMenuTestActivity extends AppCompatActivity {
+public class ArcMenuTestActivity extends BaseTestActivity {
 
     private YArcMenuView mArcMenuView;
+
+    @Override
+    protected String getTitleStr() {
+        return "YArcMenuView";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arc_menu);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("YArcMenuView");
-        }
 
         mArcMenuView = findViewById(R.id.arc_menu);
         List<Integer> menuItems = new ArrayList<>();

@@ -19,7 +19,7 @@ import com.example.zjy.zjywidget.utils.GlideCircleBorderTransform;
 import java.util.List;
 
 /**
- * Created by 74215 on 2019/2/12.
+ * Created by Yang on 2019/2/12.
  */
 
 public class EntranceItemAdapter extends RecyclerView.Adapter<EntranceItemAdapter.EntranceViewHolder>{
@@ -65,7 +65,7 @@ public class EntranceItemAdapter extends RecyclerView.Adapter<EntranceItemAdapte
 
 
 
-    class EntranceViewHolder extends RecyclerView.ViewHolder{
+    static class EntranceViewHolder extends RecyclerView.ViewHolder{
 
         private CardView mRootView;
         private TextView mNameTv;

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.scratchview.YScratchView;
 
 /**
@@ -16,21 +17,21 @@ import com.zjywidget.widget.scratchview.YScratchView;
  * 刮刮乐View 测试界面
  */
 
-public class ScratchTestActivity extends AppCompatActivity{
+public class ScratchTestActivity extends BaseTestActivity {
 
     private YScratchView mScratchView;
     private TextView mTipTv;
     private TextView mResultTv;
 
     @Override
+    protected String getTitleStr() {
+        return "YScratchView";
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scratch);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("YScratchView");
-        }
 
         mScratchView = findViewById(R.id.scratch_view);
         mTipTv = findViewById(R.id.tip_tv);

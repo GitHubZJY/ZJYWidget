@@ -5,15 +5,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.zjy.zjywidget.R;
+import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
 import com.zjywidget.widget.skillview.YSkillView;
 
 /**
- * Created by 74215 on 2019/2/12.
+ * Created by Yang on 2019/2/12.
  */
 
-public class SkillViewTestActivity extends AppCompatActivity {
+public class SkillViewTestActivity extends BaseTestActivity {
 
     private YSkillView mSkillView;
+
+    @Override
+    protected String getTitleStr() {
+        return "YSkillView";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

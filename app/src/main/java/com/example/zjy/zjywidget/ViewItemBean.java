@@ -1,7 +1,7 @@
 package com.example.zjy.zjywidget;
 
 /**
- * Created by 74215 on 2019/2/12.
+ * Created by Yang on 2019/2/12.
  */
 
 public class ViewItemBean {
