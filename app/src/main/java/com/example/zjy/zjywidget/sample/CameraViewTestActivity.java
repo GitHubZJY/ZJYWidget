@@ -1,12 +1,16 @@
 package com.example.zjy.zjywidget.sample;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.zjy.zjywidget.R;
 import com.example.zjy.zjywidget.sample.base.BaseTestActivity;
@@ -21,6 +25,7 @@ public class CameraViewTestActivity extends BaseTestActivity {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     private boolean mIsTaken;
+    private static final int TAKE_PHOTO_REQUEST_CODE = 1;
 
     @Override
     protected String getTitleStr() {
@@ -85,7 +90,11 @@ public class CameraViewTestActivity extends BaseTestActivity {
         if(mIsTaken){
             return;
         }
-        mCameraView.start();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, TAKE_PHOTO_REQUEST_CODE);
+        } else {
+            mCameraView.start();
+        }
     }
 
     @Override

@@ -47,7 +47,7 @@ public class YCameraMarkView extends FrameLayout {
     public static final int CROP_CIRCLE = 2;
 
     //拍摄结果存储路径
-    private String mSavePath = Environment.getExternalStorageDirectory() + "/" + "test.png";
+    private String mSavePath;
 
     //相机
     private CameraView mCameraView;
@@ -70,6 +70,7 @@ public class YCameraMarkView extends FrameLayout {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+        mSavePath = getContext().getExternalFilesDir(null)+ "/" + "test.png";
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mCameraView = new CameraView(context);
         mCameraView.setLayoutParams(params);
