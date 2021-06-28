@@ -6,19 +6,20 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+
+import androidx.annotation.Nullable;
 
 import com.zjywidget.widget.R;
 
@@ -52,7 +53,7 @@ public class YWaveLoadView extends View {
     //圆形遮罩
     private Bitmap mBallBitmap;
     //图标资源对象
-    private Drawable mDrawable;
+    private Bitmap mIconBitmap;
     //当前水位高度的纵坐标
     private int mWaterTop;
     //每节波浪上下波动的幅度
@@ -125,6 +126,7 @@ public class YWaveLoadView extends View {
     public YWaveLoadView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         handleStyleable(context, attrs, defStyleAttr);
+        setLayerType(View.LAYER_TYPE_HARDWARE, null);
         init();
     }
 
@@ -170,9 +172,13 @@ public class YWaveLoadView extends View {
 
         initAnim();
 
-        mDrawable = getResources().getDrawable(mIconResId);
 
-        mDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
+        if (mMode == ICON_STYLE) {
+            mDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
+        } else {
+            mDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
+        }
+
     }
 
     /**
@@ -265,9 +271,6 @@ public class YWaveLoadView extends View {
         //创建圆形遮罩图
         createBallBitmap();
 
-        if (mMode == ICON_STYLE) {
-            mDrawable.setBounds(0, 0, (int) mWidth, (int) mHeight);
-        }
         //进度动画和波浪高度动画需要Height的值
         mProgressAnim.setIntValues((int) mHeight, 0);
         mWaveHeightAnim.setIntValues(0, (int) mHeight / 2, 0);
@@ -285,6 +288,18 @@ public class YWaveLoadView extends View {
         mBallBitmap = Bitmap.createBitmap((int) mWidth, (int) mHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(mBallBitmap);
         canvas.drawCircle(mWidth / 2f, mHeight / 2f, mWidth / 2f - mBallStrokeWidth * 3f / 2f, mIconPaint);
+
+        Bitmap icBitmap = BitmapFactory.decodeResource(getResources(), mIconResId);
+        int width = icBitmap.getWidth();
+        int height = icBitmap.getHeight();
+        // 计算缩放比例
+        float scaleWidth = mWidth / width;
+        float scaleHeight = mHeight / height;
+        // 取得想要缩放的matrix参数
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // 得到新的图片
+        mIconBitmap = Bitmap.createBitmap(icBitmap, 0, 0, width, height, matrix, true);
     }
 
     @Override
@@ -339,14 +354,14 @@ public class YWaveLoadView extends View {
             canvas.drawBitmap(mBallBitmap, 0, 0, mIconPaint);
             mIconPaint.setXfermode(null);
         } else {
-            mDrawable.draw(canvas);
-            mIconPaint.setXfermode(mDuffXfermode);
             //绘制水波纹1
             canvas.drawPath(mWavePath1, mIconPaint);
             //绘制水波纹2
             canvas.drawPath(mWavePath2, mIconPaint);
+            mIconPaint.setXfermode(mDuffXfermode);
             //绘制圆形位图
             canvas.drawBitmap(mBallBitmap, 0, 0, mIconPaint);
+            canvas.drawBitmap(mIconBitmap, 0, 0, mIconPaint);
             mIconPaint.setXfermode(null);
         }
         canvas.restoreToCount(layerId);
