@@ -51,3 +51,7 @@
 ## YScratchView
     常见的刮刮乐效果，支持更换底图和布局，支持刮出结果的监听
 ![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YScratchView.gif)
+
+## YStickIndicator
+    可滚动的粘性小圆点指示器，切换时粘性动画效果，随当前选中下标左右滚动
+![image](https://github.com/GitHubZJY/ZJYWidget/blob/master/image/YStickIndicator.gif)

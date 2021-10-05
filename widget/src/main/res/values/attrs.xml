@@ -149,4 +149,15 @@
         <attr name="bar_chart_anim" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="YStickIndicator">
+        <attr name="stick_indicator_anim_time" format="integer" />
+        <attr name="stick_indicator_dot_padding" format="dimension" />
+        <attr name="stick_indicator_small_dot_width" format="dimension" />
+        <attr name="stick_indicator_big_dot_width" format="dimension" />
+        <attr name="stick_indicator_select_color" format="color|reference" />
+        <attr name="stick_indicator_default_color" format="color|reference" />
+        <attr name="stick_indicator_stick_enable" format="boolean" />
+        <attr name="stick_indicator_show_count" format="integer" />
+    </declare-styleable>
+
 </resources>

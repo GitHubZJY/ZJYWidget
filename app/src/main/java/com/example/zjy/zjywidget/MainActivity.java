@@ -17,6 +17,7 @@ import com.example.zjy.zjywidget.sample.CircleProgressTestActivity;
 import com.example.zjy.zjywidget.sample.FallingSurfaceTestActivity;
 import com.example.zjy.zjywidget.sample.PayLoadingTestActivity;
 import com.example.zjy.zjywidget.sample.ScratchTestActivity;
+import com.example.zjy.zjywidget.sample.ScrollIndicatorTestActivity;
 import com.example.zjy.zjywidget.sample.SkillViewTestActivity;
 import com.example.zjy.zjywidget.sample.WaveLoadTestActivity;
 import com.example.zjy.zjywidget.sample.YProfileSlideTestActivity;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         viewItemBeans.add(new ViewItemBean("YBarChart", "带入场动画的柱形图表，根据输入的数据自动计算显示比例，支持自定义宽度颜色", R.raw.profile_slide, BarChartTestActivity.class));
         //viewItemBeans.add(new ViewItemBean("YWheelView", "可上下滑动选择的选项菜单，支持透明度、大小的定制、边界弹性效果", R.raw.switch_view, YWheelViewActivity.class));
         //viewItemBeans.add(new ViewItemBean("YSwitchView", "高仿IOS风格的开关控件，包括过渡动画，支持定制颜色、大小、切换动画时长", R.raw.switch_view, YSwitchTestActivity.class));
+        viewItemBeans.add(new ViewItemBean("YStickIndicator", "可滚动的粘性小圆点指示器，切换时粘性动画效果，随当前选中下标左右滚动", R.raw.stick_indicator, ScrollIndicatorTestActivity.class));
 
         mAdapter = new EntranceItemAdapter(this, viewItemBeans);
 

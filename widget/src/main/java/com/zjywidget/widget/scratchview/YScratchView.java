@@ -144,6 +144,7 @@ public class YScratchView extends View {
         if (mFgBm != null) {
             mCopyBm = mFgBm.copy(Bitmap.Config.ARGB_8888, true);
             mGrayCanvas = new Canvas(mCopyBm);
+            mGrayCanvas.drawColor(Color.LTGRAY);
         } else {
             mGrayBm = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
             mGrayCanvas = new Canvas(mGrayBm);
